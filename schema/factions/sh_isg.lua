@@ -4,9 +4,14 @@
 
 FACTION.name = "International Scientific Group"
 FACTION.description = "Insert description here."
-FACTION.models = {""}
+FACTION.models = {}
 FACTION.isDefault = false
 FACTION.color = Color(100, 60, 60)
+
+for k,v in pairs(headTable) do
+	table.insert(FACTION.models, v)
+end
+
 
 -- You should define a global variable for this faction's index for easy access wherever you need. FACTION.index is
 -- automatically set, so you can simply assign the value.

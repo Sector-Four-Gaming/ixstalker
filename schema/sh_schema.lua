@@ -64,3 +64,14 @@ ix.flag.Add("M", "Duty Tech")
 ix.flag.Add("K", "Freedom Tech")
 
 ix.flag.Add("Z", "Admin Business Menu")
+
+-- Default Models for Factions
+local headTable = {}
+
+for i = 1, 9 do
+	table.insert(headTable, "models/projectpt/heads/male_0"..i..".mdl")
+end
+
+for i = 10,14 do
+	table.insert(headTable, "models/projectpt/heads/male_"..i..".mdl")
+end

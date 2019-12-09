@@ -18,7 +18,7 @@ FACTION.models = {"models/projectpt/heads/male_01.mdl",
 "models/projectpt/heads/male_12.mdl",
 "models/projectpt/heads/male_13.mdl",
 "models/projectpt/heads/male_14.mdl"}
-FACTION.isDefault = false
+FACTION.isDefault = true
 FACTION.color = Color(100, 60, 60)
 
 -- You should define a global variable for this faction's index for easy access wherever you need. FACTION.index is

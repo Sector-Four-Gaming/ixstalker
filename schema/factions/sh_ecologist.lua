@@ -4,17 +4,22 @@
 
 FACTION.name = "Ecologist"
 FACTION.description = "Ukrainian scientists sent into the Zone on behalf of the government, but seem to be affiliated with outside organizations."
-FACTION.models = {}
+FACTION.models = {"models/projectpt/heads/male_01.mdl",
+"models/projectpt/heads/male_02.mdl",
+"models/projectpt/heads/male_03.mdl",
+"models/projectpt/heads/male_04.mdl",
+"models/projectpt/heads/male_05.mdl",
+"models/projectpt/heads/male_06.mdl",
+"models/projectpt/heads/male_07.mdl",
+"models/projectpt/heads/male_08.mdl",
+"models/projectpt/heads/male_09.mdl",
+"models/projectpt/heads/male_10.mdl",
+"models/projectpt/heads/male_11.mdl",
+"models/projectpt/heads/male_12.mdl",
+"models/projectpt/heads/male_13.mdl",
+"models/projectpt/heads/male_14.mdl"}
 FACTION.isDefault = false
 FACTION.color = Color(100, 60, 60)
-
-for i = 1, 9 do
-	table.insert(FACTION.models, "models/projectpt/heads/male_0"..i..".mdl")
-end
-
-for i = 10,14 do
-	table.insert(FACTION.models, "models/projectpt/heads/male_"..i..".mdl")
-end
 
 -- You should define a global variable for this faction's index for easy access wherever you need. FACTION.index is
 -- automatically set, so you can simply assign the value.

@@ -8,8 +8,12 @@ FACTION.models = {}
 FACTION.isDefault = false
 FACTION.color = Color(100, 60, 60)
 
-for k,v in pairs(headTable) do
-	table.insert(FACTION.models, v)
+for i = 1, 9 do
+	table.insert(FACTION.models, "models/projectpt/heads/male_0"..i..".mdl")
+end
+
+for i = 10,14 do
+	table.insert(FACTION.models, "models/projectpt/heads/male_"..i..".mdl")
 end
 
 

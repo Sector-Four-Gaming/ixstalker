@@ -1,7 +1,7 @@
-ITEM.name = "Remington ACR"
+ITEM.name = "Remington ACR-C"
 ITEM.description = "A dark energy powered assault rifle."
-ITEM.model = "models/weapons/tfa_ins2/w_acr.mdl"
-ITEM.class = "tfa_ins2_acr"
+ITEM.model = "models/weapons/w_acrc.mdl"
+ITEM.class = "tfa_ins2_acrc"
 ITEM.weaponCategory = "primary"
 ITEM.width = 4
 ITEM.height = 2

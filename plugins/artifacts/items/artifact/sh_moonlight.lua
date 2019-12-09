@@ -1,0 +1,13 @@
+ITEM.name = "Moonlight";
+ITEM.description = "Protects the user from psionic radiation rather effectively. Initial use causes tiredness within the user, prolonged use causes microsleeps. [+3 Psi/+2 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/moonlight.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 14100
+ITEM.flag = "Z"
+ITEM.debuff = "rads"
+ITEM.debuffval = 2
+ITEM.weight = 1.2

@@ -1,0 +1,15 @@
+ITEM.name = "Soul";
+ITEM.description = "Restores damaged tissue and wounds slowly. Long-term use can result in short-term paranoia. [+2 Heal/+2 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/soul.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 2475
+ITEM.flag = "Z"
+ITEM.buff = "heal"
+ITEM.buffval = 2
+ITEM.debuff = "rads"
+ITEM.debuffval = 2
+ITEM.weight = 0.5

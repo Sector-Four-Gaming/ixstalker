@@ -1,0 +1,11 @@
+ITEM.name = "Pellicle";
+ITEM.description = "Neutralizes the effects of various acidic chemicals on the body. Emits no radiation. Forms on metal exposed to prolonged chemical anomalies. Increases user’s conductivity notably. [+4 Chem/-3 Electrical]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/tnb/stalker/artifacts/witchesjelly.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 12525
+ITEM.flag = "Z"
+ITEM.weight = 2

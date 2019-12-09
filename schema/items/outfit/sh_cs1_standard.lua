@@ -1,0 +1,10 @@
+ITEM.name = "Standard CS1"
+ITEM.description = "A basic CS1 suit."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/io7a.mdl"
+ITEM.width = 2
+ITEM.height = 2
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 0
+ITEM.replacements = "models/tnb/stalker/male_cs1.mdl"

@@ -1,0 +1,13 @@
+ITEM.name = "Sparkler";
+ITEM.description = "Emits a minor amount of radiation and absorbs a minor amount of electricity. Can power small devices. Causes the user to generate static electricity at an increased rate. [+1 Elec Res./+1 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/sparkler.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 875
+ITEM.flag = "Z"
+ITEM.debuff = "rads"
+ITEM.debuffval = 1
+ITEM.weight = 0.5

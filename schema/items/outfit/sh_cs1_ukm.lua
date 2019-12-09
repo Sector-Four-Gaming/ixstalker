@@ -1,0 +1,10 @@
+ITEM.name = "Military CS1"
+ITEM.description = "A basic CS1 suit colored in favor of Ukranian Military."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/io7a.mdl"
+ITEM.width = 2
+ITEM.height = 2
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 3
+ITEM.replacements = "models/tnb/stalker/male_cs1.mdl"

@@ -1,0 +1,11 @@
+ITEM.name = "Cobblestone";
+ITEM.description = "A Cobblestone is any spent artifact which has, by some means, expended its energy but has not simply dissolved.  While it does not exhibit any notable anomalous effects on a user, a Cobblestone is noted to have a mild resistance to anomalous influences itself. Stalkers have attempted to use the artifact as a cheap and easy way to provide minor anomaly-proofing to other objects. However, the success of such efforts are dubious at best.";
+ITEM.category = "Artifacts";
+ITEM.model = "models/artefacts/ball.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 150
+ITEM.flag = "Z"
+ITEM.weight = 3

@@ -1,0 +1,15 @@
+ITEM.name = "Droplet";
+ITEM.description = "Absorbs a minor amount of radiation around itself, as well as the user’s energy. Excessive use can make you generally tired. [-1 rad/-1End.]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/droplet.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 825
+ITEM.flag = "Z"
+ITEM.buff = "antirad"
+ITEM.buffval = 1
+ITEM.debuff = "end"
+ITEM.debuffval = 1
+ITEM.weight = 0.5

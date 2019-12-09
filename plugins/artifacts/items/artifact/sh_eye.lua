@@ -1,0 +1,15 @@
+ITEM.name = "Eye";
+ITEM.description = "Emits a moderate amount of radiation. Locally accelerates the body's metabolism, boosting the production of blood clots and scar tissue. Increased production of endorphins; addiction is a possibility. [+4 Bleed/+2 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/eye.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 9235
+ITEM.flag = "Z"
+ITEM.buff = "woundheal"
+ITEM.buffval = 4
+ITEM.debuff = "rads"
+ITEM.debuffval = 2
+ITEM.weight = 0.5

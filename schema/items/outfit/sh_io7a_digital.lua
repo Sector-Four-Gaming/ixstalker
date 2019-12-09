@@ -1,0 +1,10 @@
+ITEM.name = "Digital IO7A"
+ITEM.description = "A basic IO7A suit colored in digital camo."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/io7a.mdl"
+ITEM.width = 2
+ITEM.height = 2
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 10
+ITEM.replacements = "models/tnb/stalker/male_io7a.mdl"

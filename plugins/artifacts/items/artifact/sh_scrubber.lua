@@ -1,0 +1,11 @@
+ITEM.name = "Scrubber";
+ITEM.description = "A small artifact covered in organic bristles or hairs. When brushed over something dirty, such as a dusty book, crumbs on a table, rust, or anything of the sort, wherever brushed, the object will become remarkably clean. It has no actual disinfectant properties, and does not work on things like wounds that have very uneven or inconsistent makeups and surfaces. However, it can remove radioactive particles off contaminated objects scrubbed by it. Used by many Stalkers for the purposes of cleaning off their suits and weapons. This will not remove stains.";
+ITEM.category = "Artifacts";
+ITEM.model = "models/tnb/stalker/artifacts/snowflake.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 700
+ITEM.flag = "Z"
+ITEM.weight = 0.5

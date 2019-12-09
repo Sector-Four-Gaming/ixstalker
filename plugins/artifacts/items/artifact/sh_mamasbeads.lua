@@ -1,0 +1,15 @@
+ITEM.name = "Mama's Beads";
+ITEM.description = "Effectively heals minor wounds, and can heal large wounds over a long period of time. Emits insignificant radiation. Initial skin discoloration upon healing, effect reduces over time. [+2 Bleed/+1 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/mamas_beads.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 1725
+ITEM.flag = "Z"
+ITEM.buff = "woundheal"
+ITEM.buffval = 2
+ITEM.debuff = "rads"
+ITEM.debuffval = 1
+ITEM.weight = 0.5

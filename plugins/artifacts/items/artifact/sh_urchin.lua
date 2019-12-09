@@ -1,0 +1,11 @@
+ITEM.name = "Urchin";
+ITEM.description = "Urchin Artifact";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/urchin.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 5320
+ITEM.flag = "Z"
+ITEM.weight = 0.75

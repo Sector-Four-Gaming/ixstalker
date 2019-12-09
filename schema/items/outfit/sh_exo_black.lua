@@ -1,0 +1,10 @@
+ITEM.name = "Black Exosuit"
+ITEM.description = "A basic Exosuit colored black."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/exo.mdl"
+ITEM.width = 2
+ITEM.height = 3
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 4
+ITEM.replacements = "models/tnb/stalker/male_exo.mdl"

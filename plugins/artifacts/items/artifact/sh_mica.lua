@@ -1,0 +1,15 @@
+ITEM.name = "Mica";
+ITEM.description = "Increases the rate at which blood coagulates around wounds quite notably. In doing this, the user becomes quite exhausted. Those who use it regularly note that they sleep longer and deeper, and experience cold-like symptoms in regards to mucus production. [+4/-4]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/mica.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 13100
+ITEM.flag = "Z"
+ITEM.buff = "woundheal"
+ITEM.buffval = 4
+ITEM.debuff = "end"
+ITEM.debuffval = 4
+ITEM.weight = 0.75

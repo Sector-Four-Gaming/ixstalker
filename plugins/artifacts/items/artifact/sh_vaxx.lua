@@ -1,0 +1,11 @@
+ITEM.name = "Vaxx";
+ITEM.description = "Provides resistance and treatment against disease upon skin contact, but severely mentally handicaps the user. All negative effects disappear as soon as the artifact is removed from skin contact with the user.";
+ITEM.category = "Artifacts";
+ITEM.model = "models/artefacts/fountain.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 2570
+ITEM.flag = "Z"
+ITEM.weight = 0.5

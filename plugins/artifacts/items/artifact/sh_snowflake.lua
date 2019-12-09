@@ -1,0 +1,15 @@
+ITEM.name = "Snowflake";
+ITEM.description = "Emits a moderate amount of radiation, in return increases the bearer's muscle tone significantly. Constant vibration of the user’s body that some stalkers have reported feeling “Cold” or “Chilly”. Constant use can lead to muscle fatigue. [+6 Endurance/+3 rad]";
+ITEM.category = "Artifacts";
+ITEM.model = "models/nasca/etherealsrp_artifacts/snowflake.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 7130
+ITEM.flag = "Z"
+ITEM.buff = "end"
+ITEM.buffval = 6
+ITEM.debuff = "rads"
+ITEM.debuffval = 3
+ITEM.weight = 1

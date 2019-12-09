@@ -1,0 +1,11 @@
+ITEM.name = "Flush";
+ITEM.description = "Generally feeling like a soft, fleshy mass, while held, a Flush will help remedy disease or infection in a stalker by increasing blood flow.  This causes a stalker to need to urinate more frequently and often will begin to feel dehydrated after usage.";
+ITEM.category = "Artifacts";
+ITEM.model = "models/artefacts/cell.mdl";
+ITEM.width = 1;
+ITEM.height = 1;
+ITEM.weight = 1;
+ITEM.isArtefact = true;
+ITEM.price = 6200
+ITEM.flag = "Z"
+ITEM.weight = 0.75

@@ -437,7 +437,7 @@ ix.chat.Register("radioyell", {
 
 ix.chat.Register("radiowhisper", {
 	format = "%s whispers in radio: \"%s\"",
-    GetColor = function(speaker, text)
+	GetColor = function(speaker, text)
 		return RADIO_WHISCOLOR
 	end,
 	CanHear = function(self, speaker, listener)

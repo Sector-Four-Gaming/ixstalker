@@ -1,10 +1,10 @@
 --TODO: POPULATE CRAFTING ITEMS AND RECIPES
 PLUGIN.name = "Crafting"
-PLUGIN.author = "ZeMysticalTaco"
-PLUGIN.desc = "Replacing the business menu with crafting because that's a more sensible thing to do."
+PLUGIN.author = "Lt. Taylor"
+PLUGIN.desc = "Crafting with Tables!"
 STORED_RECIPES = {}
 
-function PLUGIN:AddRecipe(name, model, desc, requirements, results, id, skill, blueprint, guns, entity, category)
+function PLUGIN:AddRecipe(name, model, desc, requirements, results, id, skill, blueprint, guns, entity, category, crafttable, flag)
 	if type(name) ~= "table" then
 		local RECIPE = {}
 		RECIPE["id"] = id --Unique ID of the recipe.
@@ -17,6 +17,8 @@ function PLUGIN:AddRecipe(name, model, desc, requirements, results, id, skill, b
 		RECIPE["guns"] = guns or false
 		RECIPE["entity"] = entity or false
 		RECIPE["category"] = category or "Miscellaneous"
+		RECIPE["crafttable"] = crafttable or ""
+		RECIPE["flag"] = flag or ""
 
 		if skill then
 			RECIPE["skill"] = skill
@@ -25,53 +27,30 @@ function PLUGIN:AddRecipe(name, model, desc, requirements, results, id, skill, b
 		STORED_RECIPES[id] = RECIPE
 	else
 		for k, v in pairs(name) do
-		RECIPE["id"] = k --Unique ID of the recipe.
-		RECIPE["name"] = v.name -- Name of the recipe.
-		RECIPE["model"] = v.model -- Model it uses in the menu.
-		RECIPE["desc"] = v.desc -- Description of what it is.
-		RECIPE["req"] = v.requirements --Requirements to craft it(use item id's)
-		RECIPE["results"] = v.results --Results of the craft (use item id's)
-		RECIPE["blueprint"] = v.blueprint or false --Whether or not it uses a blueprint
-		RECIPE["guns"] = v.guns or false --Whether or not it will level up your gunsmithing skill.
-		RECIPE["entity"] = v.entity or false --FUTURE: Whether or not it will use an entity.
-		RECIPE["category"] = v.category or "Miscellaneous" --FUTURE: The Category
-
+			RECIPE["id"] = k --Unique ID of the recipe.
+			RECIPE["name"] = v.name -- Name of the recipe.
+			RECIPE["model"] = v.model -- Model it uses in the menu.
+			RECIPE["desc"] = v.desc -- Description of what it is.
+			RECIPE["req"] = v.requirements --Requirements to craft it(use item id's)
+			RECIPE["results"] = v.results --Results of the craft (use item id's)
+			RECIPE["blueprint"] = v.blueprint or false --Whether or not it uses a blueprint
+			RECIPE["guns"] = v.guns or false --Whether or not it will level up your gunsmithing skill.
+			RECIPE["entity"] = v.entity or false --FUTURE: Whether or not it will use an entity.
+			RECIPE["category"] = v.category or "Miscellaneous" --FUTURE: The Category
+			RECIPE["crafttable"] = v.crafttable or ""
+			RECIPE["flag"] = flag or ""
 		end
 	end
 end
 --[[-------------------------------------------------------------------------
 TODO: For release, demonstrate full capacity of plugin.
 ---------------------------------------------------------------------------]]
-local NEW_RECIPES = {
-	["metal_downgrade_reclaimed"] = {
-		["name"] = "Breakdown: Reclaimed Metal",
-		["model"] = "models/props_c17/oildrumchunk01d.mdl",
-		["desc"] = "Break down Reclaimed Metal into Scrap Metal.",
-		["requirements"] = {["reclaimed_metal"] = 1, ["scrap_hammer"] = 1},
-		["results"] = {["scrap_metal"] = 2},
-		["category"] = "Metal Breakdown"
-	},
-	["metal_downgrade_refined"] = {
-		["name"] = "Breakdown: Refined Metal",
-		["model"] = "models/props_c17/canisterchunk02a.mdl",
-		["desc"] = "Break down Refined Metal into Reclaimed Metal.",
-		["requirements"] = {["refined_metal"] = 1, ["scrap_hammer"] = 1},
-		["results"] = {["reclaimed_metal"] = 2},
-		["category"] = "Metal Breakdown",
-	},
-	["metal_upgrade_reclaimed"] = {
-		["name"] = "Metal: Reclaimed Metal",
-		["model"] = "models/props_c17/oildrumchunk01d.mdl",
-		["desc"] = "Break down Refined Metal into Reclaimed Metal.",
-		["requirements"] = {["scrap_metal"] = 3},
-		["results"] = {["reclaimed_metal"] = 1},
-		["category"] = "Metal Upgrade",
-	}
-}
 
-for k, v in pairs(NEW_RECIPES) do
-	PLUGIN:AddRecipe(v.name, v.model, v.desc, v.requirements, v.results, k, v.skill or nil, v.blueprint or nil, v.guns or nil, v.entity or nil, v.category or "Miscellaneous")
-end
+ix.util.Include("sh_recipes.lua")
+ix.util.Include("sh_scrap.lua")
+ix.util.Include("sh_guns.lua")
+ix.util.Include("sh_ammo.lua")
+ix.util.Include("sh_atts.lua")
 
 --[[-------------------------------------------------------------------------
 Tying in with the 'Citizen Production Plugin', adding schematics for study.
@@ -96,7 +75,6 @@ end
 
 ix.util.Include("cl_plugin.lua")
 ix.util.Include("sv_plugin.lua")
-ix.util.Include("sh_items.lua")
 
 ix.command.Add("BlueprintGive", {
 	description = "Give a blueprint to a player.",

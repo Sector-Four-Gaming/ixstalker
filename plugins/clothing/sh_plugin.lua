@@ -8,7 +8,7 @@ ix.util.Include("sh_items.lua")
 
 PLUGIN.DefaultClothes = {
 	["torso"] = {
-		["bmModel"] = "models/stardust/outfits/outfit_citizentunic.mdl",
+		["bmModel"] = "models/projectpt/suits/male_fatigues.mdl",
 		["bmSkin"] = 0
 	}
 }
@@ -54,13 +54,18 @@ function PLUGIN:createClothing(client, slot, model, skin)
 	po:SetPos(Vector(0, 0, 0))
 	po:SetAngles(Angle(0,0,0))
 	po:AddEffects(EF_BONEMERGE)
-	v:SetNoDraw(false)
-	v:SetNotSolid(false)
-	v:DrawWorldModel(true)
-	v:DrawShadow(true)
+	po:SetNoDraw(false)
+	po:SetNotSolid(false)
+	po:DrawShadow(true)
 end
 
 function PLUGIN:PlayerSpawn(client, curChar, prevChar)
+	-- Set hands to visible
+	timer.Simple( 1, function()
+		local hands = client:FindBodygroupByName("hands")
+		client:SetBodygroup(hands, 1)
+	end)
+	-- Create default clothes
 	if client:GetCharacter() ~= nil then
 		for k, v in pairs(self.DefaultClothes) do
 			local character = client:GetCharacter()
@@ -79,12 +84,10 @@ function PLUGIN:PlayerNoClip(client, state)
 			if (state) then 
 				v:SetNoDraw(true)
 				v:SetNotSolid(true)
-				v:DrawWorldModel(false)
 				v:DrawShadow(false)
 			else 
 				v:SetNoDraw(false)
 				v:SetNotSolid(false)
-				v:DrawWorldModel(true)
 				v:DrawShadow(true)
 			end
 		end

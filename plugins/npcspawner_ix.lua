@@ -205,9 +205,10 @@ function PLUGIN:OnNPCKilled(entity)
 	local class = entity:GetClass()
 	for k, v in pairs (PLUGIN.npclist) do
 		if class == k then
-			for a, b in pairs(PLUGIN.droptable)
-			local rand = math.Rand(0, #a)
-			ix.item.Spawn(a[rand], entity:GetPos() + Vector( 0, 0, 8 ))
+			for a, b in pairs(PLUGIN.droptable) do
+				local rand = math.Rand(0, #a) 
+				ix.item.Spawn(a[rand], entity:GetPos() + Vector( 0, 0, 8 ))
+			end
 		end
 	end
 

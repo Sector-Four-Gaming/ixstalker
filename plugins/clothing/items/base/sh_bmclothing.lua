@@ -110,7 +110,8 @@ end,
 						local totap = itemap - ix.item.list[attData[1]].ap
 						item:SetData("weight",totweight)
 						item:SetData("addap",totap)
-						client:SetData("armorAP", (totap + item.ap))
+						local clientap = client:GetData("armorAP")
+						client:SetData("armorAP", clientap + (totap + item.ap))
 						item.weight = totweight
 						
 						client:EmitSound("cw/holster4.wav")
@@ -143,8 +144,6 @@ ITEM.functions.UnEquip =
 	OnRun = function(item)
 		local client = item.player
 		local char = client:GetChar()
-		
-		client.armor = client.armor or {}
 		
 		PLUGIN:killSpecificClothing(client, item.bmSlot)
 

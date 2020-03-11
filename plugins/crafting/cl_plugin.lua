@@ -55,41 +55,88 @@ surface.CreateFont("WastelandStandard", {
 local PANEL = {}
 
 function PANEL:Init()
+    local dark = Color(0, 0, 0, 50)
 	self.infolabel = self:Add("DLabel")
 	self.infolabel:Dock(TOP)
 	self.infolabel:SetContentAlignment(5)
 	self.infolabel:SetExpensiveShadow(1, Color(0, 0, 0, 255))
 	self.infolabel:SetText("Hover over the icon of an item to get more information about it.")
 	self.infolabel:SetFont("WastelandMedium")
+	self.infolabel:SetTall(30)
 	ix.gui.crafting = self
-	self:SetSize(ScrW() / 2, ScrH() / 1.5)
+	self:SetSize(ScrW() / 1.5, ScrH() / 1.5)
 	self:Center()
 	self.CraftingList = self:Add("DScrollPanel")
 	self.CraftingList:Dock(FILL)
+	
 	local w, h = self:GetSize()
+	self.Categories = self:Add("DScrollPanel")
+	self.Categories:Dock(LEFT)
+	self.Categories:SetWide(200)
+	self.Categories:DockPadding(5,5,5,5)
+	self.CategoryPanels = {}
 
 	for k, v in pairs(STORED_RECIPES) do
-		--printTable(v)
-		if v["blueprint"] then
-			local data = LocalPlayer():GetCharacter():GetData("blueprints", {})
-
-			--print(v["blueprint"])
-			if table.HasValue(data, v["blueprint"]) then
-				local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["blueprint"], v["guns"], v["entity"])
-				item.id = v["id"]
-			end
-		end
-
-		if not v["blueprint"] then
-			local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["guns"], v["entity"])
-			item.id = v["id"]
-		end
-	end
+        if v["category"] then
+	        if (!self.CategoryPanels[L(v.category)]) then
+			    self.CategoryPanels[L(v.category)] = v.category
+		    end
+        end
+    end
+    
+    for category, realname in SortedPairs(self.CategoryPanels) do
+        local button = self.Categories:Add(DButton)
+        button:SetTall(36)
+        button:SetText(category)
+        button:Dock(TOP)
+        button:SetTextColor(color_white)
+        button:DockMargin(5, 5, 5, 0)
+        button:SetFont("WastelandMedium")
+        button:SetExpensiveShadow(1, Color(0, 0, 0, 150))
+        button.Paint = function(this, w, h)
+    		surface.SetDrawColor(self.selected == this and ix.config.Get("color") or dark)
+    		surface.DrawRect(0, 0, w, h)    
+    
+    		surface.SetDrawColor(0, 0, 0, 50)
+    		surface.DrawOutlinedRect(0, 0, w, h)
+    	end
+    	
+    	button.DoClick = function(this)
+    	    if (self.selected != this) then
+    	        self.selected = this
+    	        self:LoadItems(realname)
+            end
+    	end
+    end
+    
 end
 
-function PANEL:AddItem(name, icon, desc, req, results, skill, blueprint, guns, entity)
+function PANEL:LoadItems(category)
+    category = category or "scrap"
+    local recipes = STORED_RECIPES
+    self.CraftingList:Clear()
+    
+    for k,v in pairs(recipes) do
+        if v["category"] == category then
+            if v["blueprint"] then
+    			local data = LocalPlayer():GetCharacter():GetData("blueprints", {})
+    
+    			if table.HasValue(data, v["blueprint"]) then
+    				local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["blueprint"], v["guns"], v["entity"], v["crafttable"])
+    				item.id = v["id"]
+    			end
+            end
+            if not v["blueprint"] then
+    		    local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["guns"], v["entity"], v["crafttable"])
+    	        item.id = v["id"]
+    	    end
+        end
+    end
+end
+
+function PANEL:AddItem(name, icon, desc, req, results, skill, blueprint, guns, entity, crafttable)
 	self.test = self:Add("CraftingListItem")
-	self.test:SetItem(name, icon, desc, req, results, skill, blueprint or false, guns or false, entity or false)
+	self.test:SetItem(name, icon, desc, req, results, skill, blueprint or false, guns or false, entity or false, crafttable or "")
 	self.CraftingList:AddItem(self.test)
 	--self.test:DockMargin(0,0,0,5)
 
@@ -100,9 +147,10 @@ vgui.Register("CraftingListFrame", PANEL, "DPanel")
 local PANEL = {}
 
 function PANEL:Init()
+    local dark = Color(0, 0, 0, 50)
 	local size = self:GetParent():GetSize()
-	self:SetWide(size / 2)
-	self:SetTall(size / 8)
+	self:SetWide(ScrW() * ((size / 2.2)/1920))
+	self:SetTall(ScrH() * ((size / 11)/1080))
 	self:Dock(TOP)
 	local w, h = self:GetSize()
 	self.spawnicon = self:Add("SpawnIcon")
@@ -114,22 +162,22 @@ function PANEL:Init()
 	self.labelitem:SetFont("WastelandStandard")
 	self.labelitem:SetText("")
 	self.labelitem:SetAutoStretchVertical(true)
-	self.labelitem:DockMargin(120, 0, 0, 0)
-	self.labelitemdesc = self:Add("DLabel")
-	self.labelitemdesc:Dock(TOP)
-	self.labelitemdesc:SetFont("WastelandMedium")
-	self.labelitemdesc:SetText("")
-	self.labelitemdesc:SetAutoStretchVertical(true)
-	self.labelitemdesc:DockMargin(120, 0, 0, 0)
+	self.labelitem:DockMargin(80, 0, 0, 0)
+	--self.labelitemdesc = self:Add("DLabel")
+	--self.labelitemdesc:Dock(TOP)
+--	self.labelitemdesc:SetFont("WastelandMedium")
+	--self.labelitemdesc:SetText("")
+	--self.labelitemdesc:SetAutoStretchVertical(true)
+	--self.labelitemdesc:DockMargin(80, 0, 0, 0)
 	self.labelitemreq = self:Add("DLabel")
 	self.labelitemreq:Dock(TOP)
 	self.labelitemreq:SetFont("WastelandMedium")
 	self.labelitemreq:SetText("")
 	self.labelitemreq:SetAutoStretchVertical(true)
-	self.labelitemreq:DockMargin(120, 0, 0, 0)
+	self.labelitemreq:DockMargin(80, 0, 0, 0)
 	self.craftbutton = self:Add("DButton")
 	self.craftbutton:SetText("")
-	self.craftbutton:AlignRight(-365)
+	self.craftbutton:AlignRight(ScrW() * -365/1920)
 	self.craftbutton:AlignTop(20)
 	self.craftbutton:SetSize(150, 40)
 
@@ -156,26 +204,29 @@ function PANEL:Init()
 			surface.PlaySound("UI/buttonclickrelease.wav")
 		end)
 		local parent = self:GetParent()
-		print(parent)
-		print(parent.id)
 		netstream.Start("ixCraftItem", {parent.id})
 	end
 end
 
-function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, entity)
+function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, entity, crafttable)
 	--creating identifiers
 	self.labelitem:SetText(name)
+	self.labelitem:SetTextColor(ix.config.Get("color"))
 	self.spawnicon:SetModel(icon)
 	self.description = desc
-	self.labelitemdesc:SetText(desc)
+	--self.labelitemdesc:SetText(desc)
 	self.requirements = req
 	local realreqd = {}
 
 	for k, v in pairs(self.requirements) do
 		local item = ix.item.Get(k)
-		realreqd[#realreqd + 1] = item.name .. " (" .. v .. "x)"
+		if item ~= nil then
+			realreqd[#realreqd + 1] = "\n".. item.name .. " (" .. v .. "x)"
+		end
 	end
-
+    local height = self:GetTall()
+    height = height + (((ScrH() * 26/1080) * table.Count(self.requirements)) - (ScrH() * 26/1080))
+    self:SetTall(height)
 	self.labelitemreq:SetText("Requirements: " .. table.concat(realreqd, ", "))
 	self.results = results
 	self.skill = skill
@@ -189,15 +240,17 @@ function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, e
 		title:SetText(self.labelitem:GetText())
 		title:SetBackgroundColor(ix.config.Get("color"))
 		title:SizeToContents()
-		local description = tooltip:AddRow("description")
-		description:SetText(self.labelitemdesc:GetText())
-		description:SizeToContents()
+		--local description = tooltip:AddRow("description")
+		--description:SetText(self.labelitemdesc:GetText())
+		--description:SizeToContents()
 		local requirements = tooltip:AddRow("requirements")
 		local realreq = {}
 
 		for k, v in pairs(self.requirements) do
 			local item = ix.item.Get(k)
-			realreq[#realreq + 1] = item.name .. " (" .. v .. "x)"
+			if item then
+				realreq[#realreq + 1] = item.name .. " (" .. v .. "x)"
+			end
 		end
 
 		requirements:SetText("Requirements: " .. table.concat(realreq, ", "))
@@ -206,9 +259,10 @@ function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, e
 
 		for k, v in pairs(self.requirements) do
 			if inv:GetItemCount(k) < v then
-				print(inv:GetItemCount(k))
 				local i = ix.item.Get(k)
-				missing[#missing + 1] = i.name
+				if i then
+					missing[#missing + 1] = i.name
+				end
 			end
 		end
 
@@ -231,7 +285,9 @@ function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, e
 
 		for k, v in pairs(self.results) do
 			local item = ix.item.Get(k)
-			realres[#realres + 1] = item.name .. " (" .. v .. "x)"
+			if item then
+				realres[#realres + 1] = item.name .. " (" .. v .. "x)"
+			end
 		end
 
 		results:SetText("Results: " .. table.concat(realres, ", "))
@@ -288,7 +344,9 @@ function PANEL:HasRequirements()
 	for k, v in pairs(self.requirements) do
 		if inv:GetItemCount(k) < v then
 			local i = ix.item.Get(k)
-			missing[#missing + 1] = i.name
+			if i ~= nil then
+				missing[#missing + 1] = i.name
+			end
 		end
 	end
 

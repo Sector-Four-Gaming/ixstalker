@@ -2,8 +2,8 @@
 -- You can define factions in the factions/ folder. You need to have at least one faction that is the default faction - i.e the
 -- faction that will always be available without any whitelists and etc.
 
-FACTION.name = "Ecologist"
-FACTION.description = "Ukrainian Government funded scientists, Ecologists main job is to research the Zone, from anomaly's to the creatures inhabiting the Zone."
+FACTION.name = "Clear Sky"
+FACTION.description = "One of the first factions established in the Zone, Clear Sky was dedicated to researching the Zone and learning its inner workings, and are not averse to hiring mercenaries to perform missions."
 FACTION.isDefault = false
 FACTION.color = Color(100, 60, 60)
 
@@ -174,4 +174,4 @@ FACTION.models = {
 
 -- Note that the player's team will also have the same value as their current character's faction index. This means you can use
 -- client:Team() == FACTION_CITIZEN to compare the faction of the player's current character.
-FACTION_ECOLOGIST = FACTION.index
+FACTION_CLEARSKY = FACTION.index

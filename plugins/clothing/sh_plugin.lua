@@ -6,12 +6,32 @@ PLUGIN.description = "Clothing system utilizing bonemerging."
 ix.util.Include("sv_hooks.lua")
 ix.util.Include("sh_items.lua")
 
+-- Individual item lists
+ix.util.Include("sh_anorak.lua")
+ix.util.Include("sh_anorak_vest.lua")
+ix.util.Include("sh_sunrise.lua")
+
 PLUGIN.DefaultClothes = {
 	["torso"] = {
-		["bmModel"] = "models/projectpt/suits/male_fatigues.mdl",
+		["bmModel"] = "models/sectorfour/outfits/male_anorak.mdl",
 		["bmSkin"] = 0
 	}
 }
+
+-- Clothing Items
+-- 	Default Slots
+-- head
+-- eyewear
+-- mouthwear
+-- neck
+-- shoulders
+-- back
+-- torso
+-- chestrig
+-- gloves
+-- legs
+-- legwear
+-- overlay
 
 function PLUGIN:killAllClothing(client)
 	if ents.FindByClassAndParent("prop_physics", client) ~= nil then
@@ -32,9 +52,12 @@ function PLUGIN:killSpecificClothing(client, id)
 end
 
 function PLUGIN:GetSpecificClothing(client, id)
+	if id != string or id == nil then return false end
 	if ents.FindByClassAndParent("prop_physics", client) ~= nil then
 		for k,v in pairs(ents.FindByClassAndParent("prop_physics", client)) do
-			if v:GetName() == id then
+			if v:GetName() == nil then
+				break
+			elseif v:GetName() == id then
 				return v
 			end
 		end
@@ -68,7 +91,6 @@ function PLUGIN:PlayerSpawn(client, curChar, prevChar)
 	-- Create default clothes
 	if client:GetCharacter() ~= nil then
 		for k, v in pairs(self.DefaultClothes) do
-			local character = client:GetCharacter()
 			PLUGIN:createClothing(client, k, v["bmModel"], v["bmSkin"])
 		end
 	end
@@ -81,11 +103,11 @@ end
 function PLUGIN:PlayerNoClip(client, state)
 	if ents.FindByClassAndParent("prop_physics", client) ~= nil then
 		for k,v in pairs(ents.FindByClassAndParent("prop_physics", client)) do
-			if (state) then 
+			if (state) then
 				v:SetNoDraw(true)
 				v:SetNotSolid(true)
 				v:DrawShadow(false)
-			else 
+			else
 				v:SetNoDraw(false)
 				v:SetNotSolid(false)
 				v:DrawShadow(true)

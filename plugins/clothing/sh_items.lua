@@ -1,4 +1,17 @@
--- Clothing Items
+-- 	Default Slots
+-- head
+-- eyewear
+-- mouthwear
+-- neck
+-- shoulders
+-- back
+-- torso
+-- chestrig
+-- gloves
+-- legs
+-- legwear
+-- overlay
+
 local CLOTHING = {}
 
 CLOTHING.headgear_radsuit_visor = {
@@ -11,7 +24,7 @@ CLOTHING.headgear_radsuit_visor = {
 	["width"] = 2,
 	["height"] = 2,
 	["price"] = 500,
-	["bmSlot"] = "headgear",
+	["bmSlot"] = "head",
 	["bmModel"] = "models/projectpt/headwear_radsuit_visor.mdl"
 }
 
@@ -25,7 +38,7 @@ CLOTHING.headgear_pracs = {
 	["width"] = 2,
 	["height"] = 2,
 	["price"] = 500,
-	["bmSlot"] = "headgear",
+	["bmSlot"] = "head",
 	["bmModel"] = "models/projectpt/headwear_pracs.mdl"
 }
 
@@ -39,6 +52,7 @@ CLOTHING.backpack_hiking = {
 	["width"] = 2,
 	["height"] = 2,
 	["price"] = 500,
+	["weightInc"] = 50,
 	["bmSlot"] = "backpack",
 	["bmModel"] = "models/projectpt/backpack_hiking.mdl"
 }
@@ -53,6 +67,7 @@ CLOTHING.backpack_rucksack = {
 	["width"] = 2,
 	["height"] = 2,
 	["price"] = 500,
+	["weightInc"] = 25,
 	["bmSlot"] = "backpack",
 	["bmModel"] = "models/projectpt/backpack_rucksack.mdl"
 }
@@ -232,6 +247,7 @@ for k, v in pairs(CLOTHING) do
 	ITEM.bmSlot = v.bmSlot
 	ITEM.bmModel = v.bmModel
 	ITEM.bmSkin = v.bmSkin or 0
+	ITEM.weightInc = v.weightInc or 0
 end
 
 for k, v in pairs(UPGRADES) do

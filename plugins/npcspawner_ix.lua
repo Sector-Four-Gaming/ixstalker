@@ -38,7 +38,6 @@ PLUGIN.spawnedNPCs = PLUGIN.spawnedNPCs or {}
 
 if SERVER then
 	local spawntime = 1
-	
 	function PLUGIN:Think()
 		if #player.GetAll() < PLUGIN.minplayers then return end
 		if spawntime > CurTime() then return end
@@ -54,10 +53,9 @@ if SERVER then
 
 		local v = table.Random(self.spawnpoints)
 
-		if(!ix.config.Get("spawner_enabled", false)) then
+		if (!ix.config.Get("spawner_enabled", false)) then
 			return
 		end
-		
 		if (!v) then
 			return
 		end
@@ -72,32 +70,26 @@ if SERVER then
 		local idat = table.Random(self.spawngroups[v[2]]) or self.spawngroup["default"]
 
 		--nut.item.spawn(idat, v[1] + Vector( math.Rand(-8,8), math.Rand(-8,8), 20 ), nil, AngleRand())
-			
 		local trace = util.TraceHull(data)
 
-		
-		local nearby = false 
+		local nearby = false
 		local players = player.GetAll()
-		
 		--dont want to spawn them in too close to players
-		if(players) then
+		if (players) then
 			for k, v in pairs(players) do
-				if(v:GetMoveType() == MOVETYPE_NOCLIP) then
+				if (v:GetMoveType() == MOVETYPE_NOCLIP) then
 					continue
 				end
-			
 				if v:GetPos():DistToSqr(data.endpos) < 1000 * 1000 then --squared is more efficient
 					nearby = true
 					break
 				end
 			end
 		end
-		
 		if (!nearby and !trace.Entity:IsValid()) then --dont want the npcs to stack on each other or spawn inside something.
 			local ent = ents.Create(idat)
-			
 			table.insert(self.spawnedNPCs, ent)
-				
+
 			if (ent:IsValid()) then
 				ent:SetPos(data.endpos + Vector(0,0,25))
 				ent:Spawn()
@@ -138,18 +130,18 @@ ix.command.Add("npcspawnadd", {
 	arguments = {ix.type.text},
 	OnRun = function(self, client, npcgroup)
 		local trace = client:GetEyeTraceNoCursor()
-		local hitpos = trace.HitPos + trace.HitNormal*5
+		local hitpos = trace.HitPos + trace.HitNormal * 5
 		local spawngroup = npcgroup or "default"
 		table.insert(PLUGIN.spawnpoints, { hitpos, spawngroup })
-		client:Notify("You added ".. spawngroup .. " npc spawner.")
-	end 
+		client:Notify("You added " .. spawngroup .. " npc spawner.")
+	end
 })
 
 ix.command.Add("npcspawnremove", {
 	adminOnly = true,
 	OnRun = function(self, client, arguments)
 		local trace = client:GetEyeTraceNoCursor()
-		local hitpos = trace.HitPos + trace.HitNormal*5
+		local hitpos = trace.HitPos + trace.HitNormal * 5
 		local range = arguments[1] or 128
 		local mt = 0
 		for k, v in pairs( PLUGIN.spawnpoints ) do
@@ -176,7 +168,7 @@ ix.command.Add("npcspawndisplay", {
 ix.command.Add("npcspawntoggle", {
 	adminOnly = true,
 	OnRun = function(self, client, arguments)
-		if(ix.config.Get("spawner_enabled", false)) then
+		if (ix.config.Get("spawner_enabled", false)) then
 			ix.config.Set("spawner_enabled", false)
 			client:Notify("NPC Spawners have been turned off.")
 		else
@@ -200,13 +192,13 @@ PLUGIN.droptable = {
 		"ammo_blaster_large"
 	}
 }
--- TODO: Make Scavaging give more loot
+-- 
 function PLUGIN:OnNPCKilled(entity)
 	local class = entity:GetClass()
 	for k, v in pairs (PLUGIN.npclist) do
 		if class == k then
 			for a, b in pairs(PLUGIN.droptable) do
-				local rand = math.Rand(0, #a) 
+				local rand = math.Rand(0, #a)
 				ix.item.Spawn(a[rand], entity:GetPos() + Vector( 0, 0, 8 ))
 			end
 		end
@@ -214,8 +206,7 @@ function PLUGIN:OnNPCKilled(entity)
 
 	if PLUGIN.droptable != nil then
 		local class = entity:GetClass()
-		local items = {}
-		
+
 		for k, v in pairs(PLUGIN.droptable) do
 			if v[1] == class then
 				local dropchance = v[3] or 100

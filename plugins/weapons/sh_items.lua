@@ -15,6 +15,16 @@ WEAPONS.weapon_acrc = {
 }
 
 -- ATTACHMENTS
+-- Slots
+-- 1 = Optics
+-- 2 = Barrels
+-- 3 = Stocks
+-- 4 = Ammo Conversions
+-- 5 = Foregrips
+-- 6 = Magazines
+-- 7 = Skins
+-- 8 = Bipods
+
 
 ATTACHMENTS.att_optic_eotech = {
 	["name"] = "EOTech 552",
@@ -29,6 +39,31 @@ ATTACHMENTS.att_optic_eotech = {
 	["slot"] = 1
 }
 
+ATTACHMENTS.att_optic_2xrds = {
+	["name"] = "Aimpoint CompM2 2X",
+	["model"] = "models/props_junk/cardboard_box004a.mdl",
+	["description"] = "",
+	["flag"] = "1",
+	["weight"] = 3.0,
+	["width"] = 1,
+	["height"] = 1,
+	["price"] = 600,
+	["attSearch"] = { "ins2_si_2xrds", },
+	["slot"] = 1
+}
+
+ATTACHMENTS.att_optic_mx4 = {
+	["name"] = "MX4 Scope",
+	["model"] = "models/props_junk/cardboard_box004a.mdl",
+	["description"] = "",
+	["flag"] = "1",
+	["weight"] = 3.0,
+	["width"] = 1,
+	["height"] = 1,
+	["price"] = 600,
+	["attSearch"] = { "ins2_si_mx4", },
+	["slot"] = 1
+}
 
 ATTACHMENTS.att_grip_fore = {
 	["name"] = "Foregrip",
@@ -42,6 +77,7 @@ ATTACHMENTS.att_grip_fore = {
 	["attSearch"] = { "ins2_fg_grip", },
 	["slot"] = 3
 }
+
 
 -- DO NOT EDIT BELOW
 
@@ -60,6 +96,7 @@ for k, v in pairs(WEAPONS) do
 	ITEM.isWeapon = true
 	ITEM.isPLWeapon = true
 	ITEM.isTFA = true
+	ALWAYS_RAISED[v.class] = true
 end
 
 for k, v in pairs(ATTACHMENTS) do

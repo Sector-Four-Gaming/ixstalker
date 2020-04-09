@@ -3,8 +3,9 @@ local PANEL = {}
 
 function PANEL:Init()
 	local parent = self:GetParent()
-
-	self:SetSize(355, 558)
+	local pW = 850
+	local pH = 807
+	self:SetSize(pW, pH)
 	self:Dock(RIGHT)
 	self:DockMargin(0, ScrH() * 0.05, ScrW()*0.02, 0)
 
@@ -13,24 +14,15 @@ function PANEL:Init()
 	-- entry setup
 	local suppress = {}
 	hook.Run("CanCreateCharacterInfo", suppress)
-
+	local scale = 1
+	local imgWidth = 946 * scale
+	local imgHeight = 807 * scale
 	self.charbackground = parent:Add("DImage")
-	self.charbackground:SetSize(parent:GetWide()*0.365, parent:GetTall()*0.80)
-	--self.charbackground:SetImage( "stalker/ui/ui_actor_menu.png" )
-	self.charbackground:SetImage( "stalker/charinfo.png" )
-	self.charbackground:SetPos(parent:GetWide()*0.62, parent:GetTall()*0.025)
+	self.charbackground:SetSize(imgWidth, imgHeight)
+	self.charbackground:SetImage( "stalker/char_screen.png" )
+	self.charbackground:SetPos(parent:GetWide()-imgWidth, parent:GetTall()-imgHeight)
 	self.charbackground:SetZPos(-1)
 
-	-- self.charbackgroundicon = parent:Add("DImage")
-	-- self.charbackgroundicon:SetSize(parent:GetWide()*0.13, parent:GetTall()*0.091)
-	-- self.charbackgroundicon:SetPos(parent:GetWide()*0.843, parent:GetTall()*0.039)
-	-- self.charbackgroundicon:SetZPos(-1)
-
-	-- if LocalPlayer():GetCharacter():GetData("pdaavatar") then 
-	-- 	self.charbackgroundicon:SetImage( LocalPlayer():GetCharacter():GetData("pdaavatar") )
-	-- else
-	-- 	self.charbackgroundicon:SetImage( "vgui/icons/face_31.png" )
-	-- end
 
 	self.name = parent:Add("DLabel")
 	self.name:SetFont("stalkerregulartitlefont")
@@ -39,15 +31,6 @@ function PANEL:Init()
 	self.name:SetContentAlignment(9)
 	self.name:SetWide(parent:GetWide()*0.18)
 	self.name:SetTall(parent:GetTall()*0.1)
-
-
-	-- self.rep = parent:Add("DLabel")
-	-- self.rep:SetFont("stalkerregularfont")
-	-- self.rep:SetTextColor(color_white)
-	-- self.rep:SetText(LocalPlayer():GetCharacter():GetName())
-	-- self.rep:SetPos(parent:GetWide()*0.64, parent:GetTall()*0.075)
-	-- self.rep:SetWide(parent:GetWide()*0.18)
-	-- self.rep:SetContentAlignment(6)
 
 	if (!suppress.time) then
 		local format = "%A, %B %d, %Y. %H:%M:%S"
@@ -160,7 +143,7 @@ function PANEL:Init()
 		if (!suppress.money) then
 			self.money = parent:Add("DLabel")
 			self.money:SetFont("stalkerregularfont")
-			self.money:SetPos(parent:GetWide()*0.65, parent:GetTall()*0.125)
+			self.money:SetPos(parent:GetWide()*0.62, parent:GetTall()*0.125)
 			self.money:SetWide(parent:GetWide()*0.18)
 			self.money:SetContentAlignment(6)
 		end
@@ -231,7 +214,7 @@ function PANEL:Init()
 		end
 	end
 
-	if (!suppress.secattributes) then
+	/*if (!suppress.secattributes) then
 		local character = LocalPlayer().GetCharacter and LocalPlayer():GetCharacter()
 
 		if (character) then
@@ -289,7 +272,7 @@ function PANEL:Init()
 
 			self.secattributes:SizeToContents()
 		end
-	end
+	end*/
 	if (self.perks) then
 		if (!suppress.perks) then
 			local character = LocalPlayer().GetCharacter and LocalPlayer():GetCharacter()
@@ -537,6 +520,22 @@ hook.Add("CreateMenuButtons", "ixCharInfo", function(tabs)
 					this.infoPanel:OnSubpanelRightClick()
 				end
 			end
+		end,
+		OnSelected = function(info, container)
+			container.infoPanel:Update(LocalPlayer():GetCharacter())
+			ix.gui.menu:SetCharacterOverview(true)
+		end,
+		OnDeselected = function(info, container)
+			ix.gui.menu:SetCharacterOverview(false)
+		end
+	}
+end)
+
+hook.Add("CreateMenuButtons", "ixCharInv", function(tabs)
+	tabs["inventory"] = {
+		bHideBackground = true,
+		buttonColor = team.GetColor(LocalPlayer():Team()),
+		Create = function(info, container)
 			--cl_inventory start
 			local canvas = container:Add("DTileLayout")
 			local canvasLayout = canvas.PerformLayout
@@ -576,13 +575,6 @@ hook.Add("CreateMenuButtons", "ixCharInfo", function(tabs)
 			canvas.PerformLayout = canvasLayout
 			canvas:Layout()
 			--cl_inventory end
-		end,
-		OnSelected = function(info, container)
-			container.infoPanel:Update(LocalPlayer():GetCharacter())
-			ix.gui.menu:SetCharacterOverview(true)
-		end,
-		OnDeselected = function(info, container)
-			ix.gui.menu:SetCharacterOverview(false)
 		end
 	}
 end)

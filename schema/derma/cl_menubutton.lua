@@ -29,7 +29,8 @@ function PANEL:SetText(text, noTranslation)
 end
 
 function PANEL:PaintBackground(width, height)
-	surface.SetMaterial( Material("stalker/textentry.png") )
+	-- surface.SetMaterial( Material("stalker/textentry.png") )
+	surface.SetMaterial( Material("stalker/menubutton.png") )
 	surface.SetDrawColor(255, 255, 255, 255)
 	surface.DrawTexturedRect(0, 0, width, height)
 end

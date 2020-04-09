@@ -1,0 +1,10 @@
+ITEM.name = "Freedom Radsuit"
+ITEM.description = "A basic Radsuit colored in favor of Fredom."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/radsuit.mdl"
+ITEM.width = 2
+ITEM.height = 3
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 2
+ITEM.replacements = "models/tnb/stalker/male_radsuit.mdl"

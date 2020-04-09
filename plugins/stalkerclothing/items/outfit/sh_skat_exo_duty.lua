@@ -1,0 +1,10 @@
+ITEM.name = "PSZ-9d Exoskeleton"
+ITEM.description = "A custom SKAT-9M Exoskeleton designed for Duty."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/exo.mdl"
+ITEM.width = 2
+ITEM.height = 3
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 1
+ITEM.replacements = "models/tnb/stalker/male_skat_exo.mdl"

@@ -1,0 +1,10 @@
+ITEM.name = "Ecologist Sunrise"
+ITEM.description = "A basic Sunrise suit meant for Ecologists."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/sunrise.mdl"
+ITEM.width = 2
+ITEM.height = 2
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 12
+ITEM.replacements = {"anorak", "sunrise"}

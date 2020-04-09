@@ -1,0 +1,10 @@
+ITEM.name = "Military SKAT-9M"
+ITEM.description = "A basic SKAT-9M suit colored in favor of Ukranian Military."
+ITEM.category = "Outfit"
+ITEM.model = "models/tnb/stalker/items/skat.mdl"
+ITEM.width = 2
+ITEM.height = 2
+ITEM.outfitCategory = "model"
+ITEM.pacData = {}
+ITEM.newSkin = 3
+ITEM.replacements = "models/tnb/stalker/male_skat.mdl"

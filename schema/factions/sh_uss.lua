@@ -6,6 +6,26 @@ FACTION.name = "Ukrainian State Security"
 FACTION.description = "Supposedly has the Zone contained in order to prevent the looting of dangerous, radioactive materials and to prevent the unauthorized entering of any individuals."
 FACTION.isDefault = false
 FACTION.color = Color(100, 60, 60)
+FACTION.models = {
+	"models/tnb/stalker/female_01_anorak.mdl",
+	"models/tnb/stalker/female_02_anorak.mdl",
+	"models/tnb/stalker/female_03_anorak.mdl",
+	"models/tnb/stalker/female_04_anorak.mdl",
+	"models/tnb/stalker/female_05_anorak.mdl",
+	"models/tnb/stalker/female_06_anorak.mdl",
+	"models/tnb/stalker/female_07_anorak.mdl",
+	"models/tnb/stalker/female_08_anorak.mdl",
+	"models/tnb/stalker/male_01_anorak.mdl",
+	"models/tnb/stalker/male_02_anorak.mdl",
+	"models/tnb/stalker/male_03_anorak.mdl",
+	"models/tnb/stalker/male_04_anorak.mdl",
+	"models/tnb/stalker/male_05_anorak.mdl",
+	"models/tnb/stalker/male_06_anorak.mdl",
+	"models/tnb/stalker/male_07_anorak.mdl",
+	"models/tnb/stalker/male_08_anorak.mdl",
+	"models/tnb/stalker/male_09_anorak.mdl",
+	"models/tnb/stalker/male_10_anorak.mdl"
+}
 
 -- You should define a global variable for this faction's index for easy access wherever you need. FACTION.index is
 -- automatically set, so you can simply assign the value.

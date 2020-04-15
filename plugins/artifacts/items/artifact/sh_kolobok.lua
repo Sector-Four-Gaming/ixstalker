@@ -1,7 +1,7 @@
 ITEM.name = "Kolobok";
 ITEM.description = "Relatively rare artifact that heals medium wounds quickly. Emits a minor amount of radiation. The skin becomes tougher, causing reduced sense of touch, continuous use can lead to loss of low motor function. [+4 Heal/+2 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/kali/miscstuff/stalker/artifacts/kolobok.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/kolobok.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

@@ -1,7 +1,7 @@
 ITEM.name = "Shell";
 ITEM.description = "During prolonged use, the Shell stimulates the nervous system to increase energy recovery. This effect surpasses the Battery's. Up until recently was considered a trash artifact, devoid of any useful properties. Emits a moderate amount of radiation. Constant build up of stimulation to the nervous system can be fatal to the user. Senses continue to heighten into painful spasms. [+4 Endurance/+2 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/shell.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/shell.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

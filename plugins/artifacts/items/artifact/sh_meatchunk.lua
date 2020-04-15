@@ -1,7 +1,7 @@
 ITEM.name = "Meat Chunk";
 ITEM.description = "Emits a minor amount of radiation and provides a moderate amount of protection against caustics. Increased production of mucus from nostrils. [+3 Chem/+1 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/srp/items/art_meatchunk.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/meatchunk.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

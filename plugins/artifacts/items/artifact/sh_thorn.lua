@@ -1,7 +1,7 @@
 ITEM.name = "Thorn";
 ITEM.description = "Draws out radiation through the use of pricking the user’s skin, no matter if armor is worn or not. When worn will cause bleeding. [-1 Rad/Slow Bleed]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/thorn.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/thorn.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

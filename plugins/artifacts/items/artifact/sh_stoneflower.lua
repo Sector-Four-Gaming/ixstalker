@@ -1,7 +1,7 @@
 ITEM.name = "Stone Flower";
 ITEM.description = "Emits a minor amount of radiation and protects against psionic radiation. [+1 Psi/+1 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/stoneflower.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/stoneflower.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

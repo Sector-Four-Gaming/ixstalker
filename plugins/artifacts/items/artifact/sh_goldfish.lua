@@ -1,7 +1,7 @@
 ITEM.name = "Goldfish";
 ITEM.description = "Produces a gravitational field that increases the carry weight of the user holding the artifact. Results in a feeling of weightlessness; dizziness and nausea follow soon after. Emits a moderate amount of radiation. [+12kg/+3 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/goldfish.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/goldfish.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

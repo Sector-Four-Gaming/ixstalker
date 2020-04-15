@@ -1,7 +1,7 @@
 ITEM.name = "Wrenched";
-ITEM.description = "Acts as a sponge that absorbs nearby radiation. Slightly weaker than the Bubble. [-4]";
+ITEM.description = "Acts as a sponge that absorbs nearby radiation. Slightly weaker than the Bubble. [-4 Rads]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/slime.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/wrenched.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

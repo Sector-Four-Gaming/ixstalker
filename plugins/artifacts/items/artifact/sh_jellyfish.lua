@@ -1,7 +1,7 @@
 ITEM.name = "Jellyfish";
 ITEM.description = "Draws out radiation through an anomalous field. Side Effect: Causes yellowing of the sclera (Whiter outside of eyes). Prolonged use causes temporary blindness. [-2 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/jellyfish.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/jellyfish.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

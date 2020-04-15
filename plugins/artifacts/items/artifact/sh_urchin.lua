@@ -1,7 +1,7 @@
 ITEM.name = "Urchin";
 ITEM.description = "Urchin Artifact";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/urchin.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/urchin.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

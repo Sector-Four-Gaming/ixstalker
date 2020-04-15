@@ -1,5 +1,5 @@
 ITEM.name = "Radio"
-ITEM.model = "models/hgn/srp/items/radio.mdl"
+ITEM.model = "models/stalker/item/handhelds/radio.mdl"
 ITEM.desc = "A radio, for short range communications."
 ITEM.width = 1
 ITEM.height = 1
@@ -18,13 +18,11 @@ local function getText(togga)
 	end
 end
 
-function ITEM:GetDesc()	
+function ITEM:GetDesc()
 	if (!self.entity or !IsValid(self.entity)) then
 		return L("A radio, for short range communications.", getText(self:GetData("power")), self:GetData("freq", "000.0"))
 	else
-		local data = self.entity:GetData()
-		
-		return L("A radio, for short range communications.", (self.entity:GetData("power") and "On" or "Off"), self.entity:GetData("freq", "000.0"))
+		return L("A radio, for short range communications.", self.entity:GetData("power") and "On" or "Off", self.entity:GetData("freq", "000.0"))
 	end
 end
 
@@ -59,41 +57,37 @@ if (CLIENT) then
 end
 
 // On player uneqipped the item, Removes a weapon from the player and keep the ammo in the item.
-ITEM.functions.toggle = { -- sorry, for name order.
+ITEM.functions.toggle = {
 	name = "Toggle",
 	tip = "useTip",
 	icon = "icon16/connect.png",
 	OnRun = function(item)
 		item:SetData("power", !item:GetData("power", false), nil, nil)
 		item.player:EmitSound("buttons/button14.wav", 70, 150)
-
 		return false
 	end,
 }
 
-ITEM.functions.use = { -- sorry, for name order.
+ITEM.functions.use = {
 	name = "Freq",
 	tip = "useTip",
 	icon = "icon16/wrench.png",
 	OnRun = function(item)
 		netstream.Start(item.player, "radioAdjust", item:GetData("freq", "000,0"), item.id)
-
 		return false
 	end,
 }
 
 ITEM.functions.Sell =
 {
-	
 	name = "Sell",
 	tip = "Sells Item",
 	icon = "icon16/money.png",
-	
 	OnRun = function(item)
 		local player = item.player;
 		local character = player:GetChar();
 		local modifier = 3.00
-		
+
 		if (item.flag == "a" or item.flag == "C" or item.flag == "g" or item.flag == "I") then
 			modifier = ix.config.Get("Tier 1 Export")
 		elseif (item.flag == "A" or item.flag == "d" or item.flag == "G" or item.flag == "j") then
@@ -103,21 +97,21 @@ ITEM.functions.Sell =
 		else
 			modifier = ix.config.Get("Tier 4 Export")
 		end
-		
+
 		modifier = 1.00 - (modifier * 0.01)
 
-		local saleprice = math.Round((item.price*modifier))
+		local saleprice = math.Round(item.price * modifier)
 		character:GiveMoney(saleprice);
 		item:Remove()
-		player:NotifyLocalized("Item sold for " .. (saleprice))
+		player:NotifyLocalized("Item sold for " .. saleprice)
 		return false
 	end;
-	
+
 	OnCanRun = function(item)
 		local char = item.player:GetChar()
-		if(
-			char:HasFlags("a") or 
-			char:HasFlags("A") or 
+		if (
+			char:HasFlags("a") or
+			char:HasFlags("A") or
 			char:HasFlags("b") or
 			char:HasFlags("B") or
 			char:HasFlags("c") or
@@ -141,9 +135,9 @@ ITEM.functions.Sell =
 			char:HasFlags("L") or
 			char:HasFlags("m") or
 			char:HasFlags("M")
-			) 
+			)
 		then
-			return (!IsValid(item.entity))
+			return !IsValid(item.entity)
 		else
 			return false
 		end
@@ -152,16 +146,13 @@ ITEM.functions.Sell =
 
 ITEM.functions.SellPriceCheck =
 {
-	
 	name = "Check Value",
 	tip = "Checks the value of the item you will receive",
 	icon = "icon16/money_dollar.png",
-	
 	OnRun = function(item)
-		local player = item.player;
-		local character = player:GetChar();
+		local player = item.player
 		local modifier = 3.00
-		
+
 		if (item.flag == "a" or item.flag == "C" or item.flag == "g" or item.flag == "I") then
 			modifier = ix.config.get("Tier 1 Export")
 		elseif (item.flag == "A" or item.flag == "d" or item.flag == "G" or item.flag == "j") then
@@ -171,19 +162,19 @@ ITEM.functions.SellPriceCheck =
 		else
 			modifier = ix.config.get("Tier 4 Export")
 		end
-		
+
 		modifier = 1.00 - (modifier * 0.01)
 
-		local saleprice = math.Round((item.price*modifier))
+		local saleprice = math.Round(item.price * modifier)
 		player:NotifyLocalized("Item is worth " .. saleprice .. " if sold")
 		return false
 	end;
-	
+
 	OnCanRun = function(item)
 		local char = item.player:GetChar()
-		if(
-			char:HasFlags("a") or 
-			char:HasFlags("A") or 
+		if (
+			char:HasFlags("a") or
+			char:HasFlags("A") or
 			char:HasFlags("b") or
 			char:HasFlags("B") or
 			char:HasFlags("c") or
@@ -207,9 +198,9 @@ ITEM.functions.SellPriceCheck =
 			char:HasFlags("L") or
 			char:HasFlags("m") or
 			char:HasFlags("M")
-			) 
+			)
 		then
-			return (!IsValid(item.entity))
+			return !IsValid(item.entity)
 		else
 			return false
 		end

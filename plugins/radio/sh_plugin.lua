@@ -32,7 +32,7 @@ if (CLIENT) then
 		up:Dock(TOP)
 		up:DockMargin(2, 2, 2, 2)
 		up.DoClick = function(this)
-			self.number = (self.number + 1)% 10
+			self.number = (self.number + 1) % 10
 			surface.PlaySound("buttons/lightswitch2.wav")
 		end
 
@@ -42,14 +42,14 @@ if (CLIENT) then
 		down:Dock(BOTTOM)
 		down:DockMargin(2, 2, 2, 2)
 		down.DoClick = function(this)
-			self.number = (self.number - 1)% 10
+			self.number = (self.number - 1) % 10
 			surface.PlaySound("buttons/lightswitch2.wav")
 		end
 
 		local number = self:Add("Panel")
 		number:Dock(FILL)
 		number.Paint = function(this, w, h)
-			draw.SimpleText(self.number, "ixDialFont", w/2, h/2, color_white, 1, 1)
+			draw.SimpleText(self.number, "ixDialFont", w / 2, h / 2, color_white, 1, 1)
 		end
 	end
 
@@ -95,7 +95,7 @@ if (CLIENT) then
 				dot:Dock(LEFT)
 				dot:SetWide(30)
 				dot.Paint = function(this, w, h)
-					draw.SimpleText(".", "ixDialFont", w/2, h - 10, color_white, 1, 4)
+					draw.SimpleText(".", "ixDialFont", w / 2, h - 10, color_white, 1, 4)
 				end
 			end
 		end
@@ -195,7 +195,7 @@ local function endChatter(listener)
 			return false
 		end
 
-		listener:EmitSound("npc/metropolice/vo/off"..math.random(1, 3)..".wav", math.random(60, 70), math.random(80, 120))
+		listener:EmitSound("npc/metropolice/vo/off" .. math.random(1, 3) .. ".wav", math.random(60, 70), math.random(80, 120))
 	end)
 end
 
@@ -229,7 +229,6 @@ ix.chat.Register("radio", {
 					if (v.uniqueID == id and v:GetData("power", false) == true) then
 						if (CURFREQ == v:GetData("freq", "000.0")) then
 							endChatter(listener)
-							
 							return true
 						end
 
@@ -252,7 +251,6 @@ ix.chat.Register("radio", {
 						if (far and itemTable.uniqueID == id and v:GetData("power", false) == true) then
 							if (CURFREQ == v:GetData("freq", "000.0")) then
 								endChatter(listener)
-
 								return true
 							end
 						end
@@ -308,7 +306,7 @@ ix.chat.Register("radio", {
 
 		if (freq) then
 			CURFREQ = freq
-			speaker:EmitSound("npc/metropolice/vo/on"..math.random(1, 2)..".wav", math.random(50, 60), math.random(80, 120))
+			speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
 		else
 			speaker:notify(L"radioNoRadioComm")
 			return false
@@ -347,7 +345,6 @@ ix.chat.Register("radioyell", {
 					if (v.uniqueID == id and v:GetData("power", false) == true) then
 						if (CURFREQ == v:GetData("freq", "000.0")) then
 							endChatter(listener)
-							
 							return true
 						end
 
@@ -370,7 +367,6 @@ ix.chat.Register("radioyell", {
 						if (far and itemTable.uniqueID == id and v:GetData("power", false) == true) then
 							if (CURFREQ == v:GetData("freq", "000.0")) then
 								endChatter(listener)
-
 								return true
 							end
 						end
@@ -426,7 +422,7 @@ ix.chat.Register("radioyell", {
 
 		if (freq) then
 			CURFREQ = freq
-			speaker:EmitSound("npc/metropolice/vo/on"..math.random(1, 2)..".wav", math.random(50, 60), math.random(80, 120))
+			speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
 		else
 			speaker:notify(L"radioNoRadioComm")
 			return false
@@ -465,7 +461,6 @@ ix.chat.Register("radiowhisper", {
 					if (v.uniqueID == id and v:GetData("power", false) == true) then
 						if (CURFREQ == v:GetData("freq", "000.0")) then
 							endChatter(listener)
-							
 							return true
 						end
 
@@ -488,7 +483,6 @@ ix.chat.Register("radiowhisper", {
 						if (far and itemTable.uniqueID == id and v:GetData("power", false) == true) then
 							if (CURFREQ == v:GetData("freq", "000.0")) then
 								endChatter(listener)
-
 								return true
 							end
 						end
@@ -544,7 +538,7 @@ ix.chat.Register("radiowhisper", {
 
 		if (freq) then
 			CURFREQ = freq
-			speaker:EmitSound("npc/metropolice/vo/on"..math.random(1, 2)..".wav", math.random(50, 60), math.random(80, 120))
+			speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
 		else
 			speaker:notify(L"radioNoRadioComm")
 			return false
@@ -583,7 +577,6 @@ ix.chat.Register("radioooc", {
 					if (v.uniqueID == id and v:GetData("power", false) == true) then
 						if (CURFREQ == v:GetData("freq", "000.0")) then
 							endChatter(listener)
-							
 							return true
 						end
 
@@ -606,7 +599,6 @@ ix.chat.Register("radioooc", {
 						if (far and itemTable.uniqueID == id and v:GetData("power", false) == true) then
 							if (CURFREQ == v:GetData("freq", "000.0")) then
 								endChatter(listener)
-
 								return true
 							end
 						end
@@ -662,7 +654,7 @@ ix.chat.Register("radioooc", {
 
 		if (freq) then
 			CURFREQ = freq
-			speaker:EmitSound("npc/metropolice/vo/on"..math.random(1, 2)..".wav", math.random(50, 60), math.random(80, 120))
+			speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
 		else
 			speaker:notify(L"radioNoRadioComm")
 			return false

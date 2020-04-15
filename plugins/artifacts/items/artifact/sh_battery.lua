@@ -1,7 +1,7 @@
 ITEM.name = "Battery";
 ITEM.description = "Stimulates the production of ATP in human cells, reducing fatigue and giving a decent boost to stamina recovery. Emits a moderate amount of radiation. Causes short term insomnia. [+2/+2 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/battery.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/battery.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

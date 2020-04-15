@@ -1,7 +1,7 @@
 ITEM.name = "Stone Blood";
 ITEM.description = "Emits a minor amount of radiation and hardens the user’s skin, causing calluses to form and provides chemical protection. [+1 Chem/+1 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/stoneblood.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/stoneblood.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

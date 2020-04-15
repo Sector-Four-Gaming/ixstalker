@@ -1,7 +1,7 @@
 ITEM.name = "Spring";
 ITEM.description = "Emits a gravitation field that slows incoming objects, including bullets. Reduces incoming projectile force by around thirty percent. [Impact +3]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/srp/items/art_spring.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/spring.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

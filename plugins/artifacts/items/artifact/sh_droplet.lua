@@ -1,7 +1,7 @@
 ITEM.name = "Droplet";
 ITEM.description = "Absorbs a minor amount of radiation around itself, as well as the user’s energy. Excessive use can make you generally tired. [-1 rad/-1End.]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/droplet.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/droplet.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

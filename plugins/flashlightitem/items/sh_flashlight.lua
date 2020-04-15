@@ -1,5 +1,5 @@
 ITEM.name = "Flashlight"
-ITEM.model = Model("models/Items/battery.mdl")
+ITEM.model = "models/raviool/flashlight.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.price = 100

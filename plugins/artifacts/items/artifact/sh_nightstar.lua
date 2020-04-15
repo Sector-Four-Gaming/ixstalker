@@ -1,7 +1,7 @@
 ITEM.name = "Night Star";
 ITEM.description = "Emits a small amount of radiation. Emits a small gravity field that increases the carry weight of anyone using it. Causes the user to no longer experience nightmares. [+4kg/+1 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/nightstar.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/nightstar.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

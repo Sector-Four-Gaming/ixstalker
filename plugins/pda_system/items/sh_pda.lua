@@ -1,5 +1,5 @@
 ITEM.name = "Personal Digital Assistant"
-ITEM.model = Model("models/deadbodies/dead_male_civilian_radio.mdl")
+ITEM.model = "models/stalker/item/handhelds/pda.mdl"
 ITEM.description = "A pocket-sized electronic device meant to encompass the basic and most vital functions of a computer."
 ITEM.cost = 50
 ITEM.flag = "Z"

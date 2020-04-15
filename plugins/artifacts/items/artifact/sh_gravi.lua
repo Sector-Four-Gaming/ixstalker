@@ -1,7 +1,7 @@
 ITEM.name = "Gravi";
 ITEM.description = "Emits a moderate amount of radiation whilst increasing the carry weight of the one holding the artifact. Affects the inner ear's function, causing lightheadedness, dizziness, and nausea. [+8kg/+3 rad]";
 ITEM.category = "Artifacts";
-ITEM.model = "models/nasca/etherealsrp_artifacts/gravi.mdl";
+ITEM.model = "models/tnb/stalker/artifacts/gravi.mdl";
 ITEM.width = 1;
 ITEM.height = 1;
 ITEM.weight = 1;

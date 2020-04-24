@@ -6,56 +6,56 @@ function PLUGIN:ArtifactChange(client)
     -- INIT VALUES
     local artiheal = client:GetNetVar("ArtiHealAmt") or 0           -- Healing
     local artihealcur = client:GetNetVar("ArtiHealCur") or 0
-    
+
     local rads = client:GetNetVar("Rads") or 0                      -- Radiation
     local radscur = client:GetNetVar("RadsCur") or 0
-    
+
     local antirads = client:GetNetVar("AntiRads") or 0              -- Anti-Radiation
     local antiradscur = client:GetNetVar("AntiRadsCur") or 0
-    
+
     local endbuff = client:GetNetVar("EndBuff") or 0                -- Endurance buff
     local endbuffcur = client:GetNetVar("EndBuffCur") or 0
-    
+
     local endred = client:GetNetVar("EndRed") or 0                  -- Endurance debuff
     local endredcur = client:GetNetVar("EndRedCur") or 0
-    
+
     local woundheal = client:GetNetVar("WoundHeal") or 0
     local woundhealcur = client:GetNetVar("WoundHealCur") or 0
-    
+
     local maxweight = client:GetChar():GetData("MaxWeight",50)
     local weightbuff = client:GetNetVar("WeightBuff") or 0
     local weightprev = client:GetNetVar("WeightBuffCur") or 0
-    
+
     local theal = timer.Exists("ArtiHeal")                          -- Timers
     local trads = timer.Exists("Rads")
     local tradsred = timer.Exists("RadsRed")
     local tend = timer.Exists("Endurance")
     local twound = timer.Exists("WoundHeal")
-    
+
                                                                     -- Ensure valid values
     if artiheal < 0 then
         client:SetNetVar("ArtiHealAmt", 0)
         artiheal = 0
     end
-    
+
     if rads < 0 then
         client:SetNetVar("Rads", 0)
         rads = 0
     end
-    
+
     if antirads < 0 then
         client:SetNetVar("AntiRads", 0)
         antirads = 0
     end
-    
+
     if endbuff < 0 then
         client:SetNetVar("EndBuff", 0)
     end
-    
+
     if endred < 0 then
         client:SetNetVar("EndRed", 0)
     end
-    
+
     if weightbuff > weightprev then
         local newweight = maxweight + weightbuff
         client:GetChar():SetData("MaxWeight",newweight)
@@ -65,9 +65,9 @@ function PLUGIN:ArtifactChange(client)
         client:GetChar():SetData("MaxWeight",newweight)
         client:SetNetVar("WeightBuffCur",weightbuff)
     end
-    
+
     -- HEAL FUNCTION
-        
+
     if theal == false and artiheal > 0 then                  -- If the timer doesn't exist and it should, make it
         timer.Create("ArtiHeal", 10, 0, function()
             if (client:IsValid() and client:Alive()) then
@@ -75,64 +75,63 @@ function PLUGIN:ArtifactChange(client)
             end
         end)
         client:SetNetVar("ArtiHealCur", artiheal)
-    
+
     elseif theal == true and artiheal <= 0 then              -- If the timer exists and shouldn't, remove it
         timer.Remove("ArtiHeal")
-    
+
     elseif theal == true and artihealcur ~= artiheal then    -- If the timer exists and should, but has the wrong value, fix it
         timer.Adjust("ArtiHeal", 10, 0, function()
             if (client:IsValid() and client:Alive()) then
-                client:SetHealth(math.Clamp((client:Health() + artiheal), 0, client:GetMaxHealth()))
+                client:SetHealth(math.Clamp(client:Health() + artiheal, 0, client:GetMaxHealth()))
             end
         end)
         client:SetNetVar("ArtiHealCur", artiheal)
     end
-    
+
     -- WOUND HEAL FUNCTION
-    
+
     if twound == false and woundheal > 0 then                  -- If the timer doesn't exist and it should, make it
         timer.Create("WoundHeal", 5, 0, function()
             if (client:IsValid() and client:Alive()) then
                 local newheal = (woundheal / 2)
-                client:SetHealth(math.Clamp((client:Health() + newheal), 0, client:GetMaxHealth()))
+                client:SetHealth(math.Clamp(client:Health() + newheal, 0, client:GetMaxHealth()))
             end
         end)
         client:SetNetVar("WoundHealCur", woundheal)
-    
+
     elseif twound == true and woundheal <= 0 then              -- If the timer exists and shouldn't, remove it
         timer.Remove("WoundHeal")
-    
+
     elseif twound == true and woundhealcur ~= woundheal then    -- If the timer exists and should, but has the wrong value, fix it
         timer.Adjust("WoundHeal", 5, 0, function()
             if (client:IsValid() and client:Alive()) then
                 local newheal = (woundheal / 2)
-                client:SetHealth(math.Clamp((client:Health() + newheal), 0, client:GetMaxHealth()))
+                client:SetHealth(math.Clamp(client:Health() + newheal, 0, client:GetMaxHealth()))
             end
         end)
         client:SetNetVar("WoundHealCur", woundheal)
     end
-    
+
     -- RADIATION FUNCTION
     if rads > antirads then
         if trads == false then
             timer.Create("Rads", 3, 0, function()
                 if (client:IsValid() and client:Alive()) then
-                    
                     if client:Health() <= 0 then
                         client:Kill()
                     end
-                    
+
                     local accumrad = client:GetNetVar("AccumRads") or 0
                     local radiation = (rads - antirads)
                     local buildup = accumrad + radiation
-                    local damage = (100 * (buildup/5000))
+                    local damage = (100 * (buildup / 5000))
                     client:SetNetVar("AccumRads", buildup)
                     if client:Alive() == false then
                         client:SetNetVar("AccumRads", 0)
                         timer.Remove("Rads")
                     end
-                    
-                    client:SetHealth(math.Clamp((client:Health() - damage), 0, client:GetMaxHealth()))
+
+                    client:SetHealth(math.Clamp(client:Health() - damage, 0, client:GetMaxHealth()))
                 end
             end)
             client:SetNetVar("RadsCur", rads)
@@ -140,22 +139,22 @@ function PLUGIN:ArtifactChange(client)
         elseif rads ~= radscur or antirads ~= antiradscur then
             timer.Adjust("Rads", 3, 0, function()
                 if (client:IsValid() and client:Alive()) then
-                    
+
                     if client:Health() <= 0 then
                         client:Kill()
                     end
-                    
+
                     local accumrad = client:GetNetVar("AccumRads") or 0
                     local radiation = (rads - antirads)
                     local buildup = accumrad + radiation
-                    local damage = (100 * (buildup/5000))
+                    local damage = (100 * (buildup / 5000))
                     client:SetNetVar("AccumRads", buildup)
                     if client:Alive() == false then
                         client:SetNetVar("AccumRads", 0)
                         timer.Remove("Rads")
                     end
-                    
-                    client:SetHealth(math.Clamp((client:Health() - damage), 0, client:GetMaxHealth()))
+
+                    client:SetHealth(math.Clamp(client:Health() - damage, 0, client:GetMaxHealth()))
                 end
             end)
             client:SetNetVar("RadsCur", rads)
@@ -170,61 +169,61 @@ function PLUGIN:ArtifactChange(client)
             timer.Create("RadsRed", 3, 0, function()
                 if (client:IsValid() and client:Alive()) then
                     if timer.Exists("Rads") then
-                       timer.Remove("Rads") 
+                       timer.Remove("Rads")
                     end
-                    
+
                     if client:Health() <= 0 then
                         client:Kill()
                     end
-                    
+
                     local accumrad = client:GetNetVar("AccumRads") or 0 -- accumulated radiation
                     local antiradcalc = (antirads - rads) or 0          -- antiradiation artis help
                     local modifier = (1 + antiradcalc)                  -- add the antiradiation artis and a baseline -1 to rad together
                     local radred = (accumrad - modifier)                -- reduce the accumulated radiation value by the modifier
-                    local damage = (100 * (radred/5000))                -- determine how much damage the player will receive
-                    
+                    local damage = (100 * (radred / 5000))                -- determine how much damage the player will receive
+
                     client:SetNetVar("AccumRads", radred)               -- Update the accumulated radiation value
                     if radred <= 0 or client:Alive() == false then
                         client:SetNetVar("AccumRads", 0)
-                        timer.Remove("RadsRed") 
+                        timer.Remove("RadsRed")
                     end
-                    
-                    client:SetHealth(math.Clamp((client:Health() - damage), 0, client:GetMaxHealth()))
+
+                    client:SetHealth(math.Clamp(client:Health() - damage, 0, client:GetMaxHealth()))
                 end
             end)
             client:SetNetVar("AntiRadsCur", antirads)
-            
+
         elseif tradsred == true and antiradscur ~= antirads then
             timer.Adjust("RadsRed", 3, 0, function()
                 if (client:IsValid() and client:Alive()) then
                     if timer.Exists("Rads") then
-                       timer.Remove("Rads") 
+                       timer.Remove("Rads")
                     end
-                    
+
                     if client:Health() <= 0 then
                         client:Kill()
                     end
-                    
+
                     local accumrad = client:GetNetVar("AccumRads") or 0 -- accumulated radiation
                     local antiradcalc = (antirads - rads) or 0          -- antiradiation artis help
                     local modifier = (1 + antiradcalc)                  -- add the antiradiation artis and a baseline -1 to rad together
                     local radred = (accumrad - modifier)                -- reduce the accumulated radiation value by the modifier
-                    local damage = (100 * (radred/5000))                -- determine how much damage the player will receive
-                    
+                    local damage = (100 * (radred / 5000))                -- determine how much damage the player will receive
+
                     client:SetNetVar("AccumRads", radred)               -- Update the accumulated radiation value
                     if radred <= 0 or client:Alive() == false then
                         client:SetNetVar("AccumRads", 0)
-                        timer.Remove("RadsRed") 
+                        timer.Remove("RadsRed")
                     end
-                    
-                    client:SetHealth(math.Clamp((client:Health() - damage), 0, client:GetMaxHealth()))
+
+                    client:SetHealth(math.Clamp(client:Health() - damage, 0, client:GetMaxHealth()))
                 end
             end)
         end
     end
-    
+
     -- ENDURANCE FUNCTION
-    
+
     if endbuff > 0 or endred > 0 then
         if tend == false then
             timer.Create("Endurance", 1, 0, function()

@@ -7,7 +7,7 @@ function PANEL:Init()
 	local pH = 807
 	self:SetSize(pW, pH)
 	self:Dock(RIGHT)
-	self:DockMargin(0, ScrH() * 0.05, ScrW()*0.02, 0)
+	self:DockMargin(0, ScrH() * 0.05, ScrW() * 0.02, 0)
 
 	self.VBar:SetWide(0)
 
@@ -20,17 +20,17 @@ function PANEL:Init()
 	self.charbackground = parent:Add("DImage")
 	self.charbackground:SetSize(imgWidth, imgHeight)
 	self.charbackground:SetImage( "stalker/char_screen.png" )
-	self.charbackground:SetPos(parent:GetWide()-imgWidth, parent:GetTall()-imgHeight)
+	self.charbackground:SetPos(parent:GetWide() - imgWidth, parent:GetTall() - imgHeight)
 	self.charbackground:SetZPos(-1)
 
 
 	self.name = parent:Add("DLabel")
 	self.name:SetFont("stalkerregulartitlefont")
 	self.name:SetTextColor(color_white)
-	self.name:SetPos(parent:GetWide()*0.58, parent:GetTall()*0.08)
+	self.name:SetPos(parent:GetWide() * 0.58, parent:GetTall() * 0.08)
 	self.name:SetContentAlignment(9)
-	self.name:SetWide(parent:GetWide()*0.18)
-	self.name:SetTall(parent:GetTall()*0.1)
+	self.name:SetWide(parent:GetWide() * 0.18)
+	self.name:SetTall(parent:GetTall() * 0.1)
 
 	if (!suppress.time) then
 		local format = "%A, %B %d, %Y. %H:%M:%S"
@@ -143,8 +143,8 @@ function PANEL:Init()
 		if (!suppress.money) then
 			self.money = parent:Add("DLabel")
 			self.money:SetFont("stalkerregularfont")
-			self.money:SetPos(parent:GetWide()*0.62, parent:GetTall()*0.125)
-			self.money:SetWide(parent:GetWide()*0.18)
+			self.money:SetPos(parent:GetWide() * 0.62, parent:GetTall() * 0.125)
+			self.money:SetWide(parent:GetWide() * 0.18)
 			self.money:SetContentAlignment(6)
 		end
 
@@ -288,7 +288,6 @@ function PANEL:Init()
 
 				for k, v in SortedPairsByMemberValue(ix.perks.list, "name") do
 					local perkBoost = 0
-
 					if (boost[k]) then
 						for _, bValue in pairs(boost[k]) do
 							perkBoost = perkBoost + bValue
@@ -297,7 +296,6 @@ function PANEL:Init()
 
 					local bar = self.perks:Add("ixAttributeBar")
 					bar:Dock(TOP)
-
 					if (!bFirst) then
 						bar:DockMargin(0, 3, 0, 0)
 					else
@@ -305,7 +303,6 @@ function PANEL:Init()
 					end
 
 					local value = character:GetPerk(k, 0)
-
 					if (perkBoost) then
 						bar:SetValue(value - perkBoost or 0)
 					else
@@ -316,19 +313,17 @@ function PANEL:Init()
 					bar:SetMax(maximum)
 					bar:SetReadOnly()
 					bar:SetText(Format("%s [%i/%i]", L(v.name), value, maximum))
-
 					if (perkBoost) then
 						bar:SetBoost(perkBoost)
 					end
 				end
-
 				self.perks:SizeToContents()
 			end
 		end
 	end
 	if !suppress.protection then
 		local character = LocalPlayer().GetCharacter and LocalPlayer():GetCharacter()
-		
+
 		if character then
 			local inventory = character:GetInv()
 			local imptotal = 0
@@ -337,87 +332,87 @@ function PANEL:Init()
 			local chemtotal = 0
 			local radtotal = 0
 			local psitotal = 0
-			
+
 			for k, v in pairs (inventory:GetItems()) do
-				if(!v:GetData("equip", false)) then continue end --ignores unequipped items
-				
+				if (!v:GetData("equip", false)) then continue end --ignores unequipped items
+
 				local dura = v:GetData("durability", 0)
 				if (dura <= 0) then continue end --ignores items with 0 durability
-				
+
 				local res = v.res
-				
-				if not res then continue end
-				
+
+				if !res then continue end
+
 				if (res["Fall"]) then
 					imptotal = imptotal + res["Fall"]
 				end
-				
+
 				if (res["Burn"]) then
 					burntotal = burntotal + res["Burn"]
 				end
-				
+
 				if (res["Radiation"]) then
 					radtotal = radtotal + res["Radiation"]
 				end
-				
+
 				if (res["Chemical"]) then
 					chemtotal = chemtotal + res["Chemical"]
 				end
-				
+
 				if (res["Shock"]) then
 					shocktotal = shocktotal + res["Shock"]
 				end
-				
+
 				if (res["Psi"]) then
 					psitotal = psitotal + res["Psi"]
 				end
-				
+
 				local modData = v:GetData("mod", {})
 				for k, modTable in pairs(modData) do
-				
+
 					local modItem = ix.item.list[modTable[1]]
-					
-					if(!modItem) then continue end
-					
+
+					if (!modItem) then continue end
+
 					local modres = modItem.res
-					
+
 					if (modres) then
 						if (modres["Fall"]) then
 							imptotal = imptotal + modres["Fall"]
 						end
-						
+
 						if (modres["Burn"]) then
 							burntotal = burntotal + modres["Burn"]
 						end
-						
+
 						if (modres["Radiation"]) then
 							radtotal = radtotal + modres["Radiation"]
 						end
-							
+
 						if (modres["Chemical"]) then
 							chemtotal = chemtotal + modres["Chemical"]
 						end
-						
+
 						if (modres["Shock"]) then
 							shocktotal = shocktotal + modres["Shock"]
 						end
-						
+
 						if (modres["Psi"]) then
 							psitotal = psitotal + modres["Psi"]
 						end
 					end
 				end
 			end
-			
+
 			local resistances = {
-				["Impact"] = (imptotal * 100), 
-				["Burn"] = (burntotal * 100), 
-				["Radiation"] = (radtotal * 100),
-				["Chemical"] = (chemtotal * 100),
-				["Shock"] = (shocktotal * 100),
-				["Psi"] = (psitotal * 100),
+				["Impact"] = imptotal * 100,
+				["Burn"] = burntotal * 100,
+				["Radiation"] = radtotal * 100,
+				["Chemical"] = chemtotal * 100,
+				["Shock"] = shocktotal * 100,
+				["Psi"] = psitotal * 100,
 			}
-			
+
 			self.resistances = self:Add("ixCategoryPanel")
 			self.resistances:SetText("Resistances")
 			self.resistances:Dock(TOP)
@@ -434,7 +429,7 @@ function PANEL:Init()
 				else
 					bFirst = false
 				end
-				
+
 				bar:SetMax(100)
 				bar:SetValue(v)
 				bar:SetReadOnly()
@@ -512,7 +507,7 @@ hook.Add("CreateMenuButtons", "ixCharInfo", function(tabs)
 		buttonColor = team.GetColor(LocalPlayer():Team()),
 		Create = function(info, container)
 			container.infoPanel = container:Add("ixCharacterInfo")
-			container.infoPanel:DockMargin(0,container.infoPanel:GetParent():GetTall()*0.15,container.infoPanel:GetParent():GetWide()*0.05,container.infoPanel:GetParent():GetWide()*0.17)
+			container.infoPanel:DockMargin(0,container.infoPanel:GetParent():GetTall() * 0.15,container.infoPanel:GetParent():GetWide() * 0.05,container.infoPanel:GetParent():GetWide() * 0.17)
 
 
 			container.OnMouseReleased = function(this, key)
@@ -566,9 +561,9 @@ hook.Add("CreateMenuButtons", "ixCharInv", function(tabs)
 
 			if (ix.option.Get("openBags", true)) then
 				for _, v in pairs(inventory:GetItems()) do
-					if (v.isBag) and v:GetData("equip") == true then
+					if v.isBag and v:GetData("equip") == true then
 						v.functions.View.OnClick(v)
-					end					
+					end
 				end
 			end
 

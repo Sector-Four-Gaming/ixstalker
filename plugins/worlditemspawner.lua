@@ -99,13 +99,13 @@ if SERVER then
 	local spawntime = 1
 
 	function PLUGIN:ItemShouldSave(entity)
-		return (!entity.generated)
+		return !entity.generated
 	end
 
 	function PLUGIN:Think()
 		if #player.GetAll() < PLUGIN.minplayers then return end
 		if spawntime > CurTime() then return end
-		spawntime = CurTime() + self.spawnrate + math.random(self.spawnrate/2)
+		spawntime = CurTime() + self.spawnrate + math.random(self.spawnrate / 2)
 		for k, v in ipairs(self.spawneditems) do
 			if (!v:IsValid()) then
 				table.remove(self.spawneditems, k)
@@ -124,21 +124,13 @@ if SERVER then
 				if (!j) then
 					return
 				end
-	
+
 				local data = {}
 				data.start = j[1]
 				data.endpos = data.start + Vector(0, 0, -64)
 				data.filter = client
 				data.mins = Vector(-32, -32, 0)
 				data.maxs = Vector(32, 32, 32)
-				local trace = util.TraceHull(data)
-
-				/*if trace.Entity:IsValid() then
-					if !(trace.Entity:GetClass() == "nut_storage") then
-						continue
-					end
-				end*/
-			
 				local idat = table.Random(self.spawngroups[j[2]] or self.spawngroups["default"])
 				if math.random(101) <= (0 + math.sqrt(1.7 * #player.GetAll())) then
 					ix.item.Spawn(idat[1], j[1] + Vector( math.Rand(-8,8), math.Rand(-8,8), 20 ), nil, AngleRand(), idat[2] or {})
@@ -178,13 +170,13 @@ ix.command.Add("itemspawnadd", {
 	superAdminOnly = true,
 	arguments = {
 		ix.type.string,
-	},	
+	},
 	OnRun = function(self, client, text)
 		local trace = client:GetEyeTraceNoCursor()
-		local hitpos = trace.HitPos + trace.HitNormal*5
+		local hitpos = trace.HitPos + trace.HitNormal * 5
 		local spawngroup = text or "default"
 		table.insert( PLUGIN.itempoints, { hitpos, spawngroup } )
-		client:Notify( "You added ".. spawngroup .. " item spawner." )
+		client:Notify( "You added " .. spawngroup .. " item spawner." )
 		PLUGIN:SaveData()
 	end
 })
@@ -196,7 +188,7 @@ ix.command.Add("itemspawnremove", {
 	},
 	OnRun = function(self, client, arguments)
 		local trace = client:GetEyeTraceNoCursor()
-		local hitpos = trace.HitPos + trace.HitNormal*5
+		local hitpos = trace.HitPos + trace.HitNormal * 5
 		local range = arguments or 128
 		local mt = 0
 		for k, v in pairs( PLUGIN.itempoints ) do

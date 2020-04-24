@@ -195,6 +195,7 @@ PLUGIN.droptable = {
 -- 
 function PLUGIN:OnNPCKilled(entity)
 	local class = entity:GetClass()
+
 	for k, v in pairs (PLUGIN.npclist) do
 		if class == k then
 			for a, b in pairs(PLUGIN.droptable) do
@@ -205,8 +206,6 @@ function PLUGIN:OnNPCKilled(entity)
 	end
 
 	if PLUGIN.droptable != nil then
-		local class = entity:GetClass()
-
 		for k, v in pairs(PLUGIN.droptable) do
 			if v[1] == class then
 				local dropchance = v[3] or 100

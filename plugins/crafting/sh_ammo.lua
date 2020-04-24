@@ -1,5 +1,5 @@
 local NEW_RECIPES = {
-    ["ammo_9x18"] = {
+	["ammo_9x18"] = {
 		["name"] = "9x18mm",
 		["model"] = "models/kek1ch/ammo_9x18_fmj.mdl",
 		["desc"] = "Create a ",

@@ -208,11 +208,9 @@ function PANEL:OnDrop(bDragging, inventoryPanel, inventory, gridX, gridY)
 	elseif (inventory:GetItemAt(gridX, gridY) != nil) then --combine reddit
 		if gridX and gridY then
 			local targetItem = inventory:GetItemAt(gridX, gridY)
-			
-			if (targetItem) then
-				if(targetItem.functions.combine) then
-					InventoryAction("combine",item.id,self.inventoryID,{targetItem.id})
-				end
+
+			if (targetItem and targetItem.functions.combine) then
+				InventoryAction("combine",item.id,self.inventoryID,{targetItem.id})
 			end
 		end
 	end

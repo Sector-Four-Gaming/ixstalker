@@ -1,5 +1,5 @@
 local NEW_RECIPES = {
-    ["atts_saigafh"] = {
+	["atts_saigafh"] = {
 		["name"] = "Saiga-12 Flash Hider",
 		["model"] = "models/Items/BoxSRounds.mdl",
 		["desc"] = "Create a Saiga-12 Flash Hider",
@@ -28,7 +28,6 @@ local NEW_RECIPES = {
 		["category"] = "Attachments",
 		["crafttable"] = "gunsmithing",
 		["flag"] = "2",
-		
 	},
 	["atts_pbs1"] = {
 		["name"] = "PBS-1",

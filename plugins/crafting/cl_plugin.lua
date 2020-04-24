@@ -55,7 +55,7 @@ surface.CreateFont("WastelandStandard", {
 local PANEL = {}
 
 function PANEL:Init()
-    local dark = Color(0, 0, 0, 50)
+	local dark = Color(0, 0, 0, 50)
 	self.infolabel = self:Add("DLabel")
 	self.infolabel:Dock(TOP)
 	self.infolabel:SetContentAlignment(5)
@@ -68,7 +68,7 @@ function PANEL:Init()
 	self:Center()
 	self.CraftingList = self:Add("DScrollPanel")
 	self.CraftingList:Dock(FILL)
-	
+
 	local w, h = self:GetSize()
 	self.Categories = self:Add("DScrollPanel")
 	self.Categories:Dock(LEFT)
@@ -77,61 +77,57 @@ function PANEL:Init()
 	self.CategoryPanels = {}
 
 	for k, v in pairs(STORED_RECIPES) do
-        if v["category"] then
-	        if (!self.CategoryPanels[L(v.category)]) then
-			    self.CategoryPanels[L(v.category)] = v.category
-		    end
-        end
-    end
-    
-    for category, realname in SortedPairs(self.CategoryPanels) do
-        local button = self.Categories:Add(DButton)
-        button:SetTall(36)
-        button:SetText(category)
-        button:Dock(TOP)
-        button:SetTextColor(color_white)
-        button:DockMargin(5, 5, 5, 0)
-        button:SetFont("WastelandMedium")
-        button:SetExpensiveShadow(1, Color(0, 0, 0, 150))
-        button.Paint = function(this, w, h)
-    		surface.SetDrawColor(self.selected == this and ix.config.Get("color") or dark)
-    		surface.DrawRect(0, 0, w, h)    
-    
-    		surface.SetDrawColor(0, 0, 0, 50)
-    		surface.DrawOutlinedRect(0, 0, w, h)
-    	end
-    	
-    	button.DoClick = function(this)
-    	    if (self.selected != this) then
-    	        self.selected = this
-    	        self:LoadItems(realname)
-            end
-    	end
-    end
-    
+		if v["category"] and !self.CategoryPanels[L(v.category)] then
+			self.CategoryPanels[L(v.category)] = v.category
+		end
+	end
+
+	for category, realname in SortedPairs(self.CategoryPanels) do
+		local button = self.Categories:Add(DButton)
+		button:SetTall(36)
+		button:SetText(category)
+		button:Dock(TOP)
+		button:SetTextColor(color_white)
+		button:DockMargin(5, 5, 5, 0)
+		button:SetFont("WastelandMedium")
+		button:SetExpensiveShadow(1, Color(0, 0, 0, 150))
+		button.Paint = function(this, w, h)
+			surface.SetDrawColor(self.selected == this and ix.config.Get("color") or dark)
+			surface.DrawRect(0, 0, w, h)
+			surface.SetDrawColor(0, 0, 0, 50)
+			surface.DrawOutlinedRect(0, 0, w, h)
+		end
+
+		button.DoClick = function(this)
+			if (self.selected != this) then
+				self.selected = this
+				self:LoadItems(realname)
+			end
+		end
+	end
 end
 
 function PANEL:LoadItems(category)
-    category = category or "scrap"
-    local recipes = STORED_RECIPES
-    self.CraftingList:Clear()
-    
-    for k,v in pairs(recipes) do
-        if v["category"] == category then
-            if v["blueprint"] then
-    			local data = LocalPlayer():GetCharacter():GetData("blueprints", {})
-    
-    			if table.HasValue(data, v["blueprint"]) then
-    				local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["blueprint"], v["guns"], v["entity"], v["crafttable"])
-    				item.id = v["id"]
-    			end
-            end
-            if not v["blueprint"] then
-    		    local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["guns"], v["entity"], v["crafttable"])
-    	        item.id = v["id"]
-    	    end
-        end
-    end
+	category = category or "scrap"
+	local recipes = STORED_RECIPES
+	self.CraftingList:Clear()
+
+	for k,v in pairs(recipes) do
+		if v["category"] == category then
+			if v["blueprint"] then
+				local data = LocalPlayer():GetCharacter():GetData("blueprints", {})
+
+				if table.HasValue(data, v["blueprint"]) then
+					local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["blueprint"], v["guns"], v["entity"], v["crafttable"])
+					item.id = v["id"]
+				end
+			end
+			if not v["blueprint"] then
+				local item = self:AddItem(v["name"], v["model"], v["desc"], v["req"], v["results"], v["skill"], v["guns"], v["entity"], v["crafttable"])
+				item.id = v["id"]
+			end
+		end
+	end
 end
 
 function PANEL:AddItem(name, icon, desc, req, results, skill, blueprint, guns, entity, crafttable)
@@ -147,10 +143,10 @@ vgui.Register("CraftingListFrame", PANEL, "DPanel")
 local PANEL = {}
 
 function PANEL:Init()
-    local dark = Color(0, 0, 0, 50)
+	local dark = Color(0, 0, 0, 50)
 	local size = self:GetParent():GetSize()
-	self:SetWide(ScrW() * ((size / 2.2)/1920))
-	self:SetTall(ScrH() * ((size / 11)/1080))
+	self:SetWide(ScrW() * ((size / 2.2) / 1920))
+	self:SetTall(ScrH() * ((size / 11) / 1080))
 	self:Dock(TOP)
 	local w, h = self:GetSize()
 	self.spawnicon = self:Add("SpawnIcon")
@@ -177,7 +173,7 @@ function PANEL:Init()
 	self.labelitemreq:DockMargin(80, 0, 0, 0)
 	self.craftbutton = self:Add("DButton")
 	self.craftbutton:SetText("")
-	self.craftbutton:AlignRight(ScrW() * -365/1920)
+	self.craftbutton:AlignRight(ScrW() * -365 / 1920)
 	self.craftbutton:AlignTop(20)
 	self.craftbutton:SetSize(150, 40)
 
@@ -224,9 +220,9 @@ function PANEL:SetItem(name, icon, desc, req, results, skill, blueprint, guns, e
 			realreqd[#realreqd + 1] = "\n".. item.name .. " (" .. v .. "x)"
 		end
 	end
-    local height = self:GetTall()
-    height = height + (((ScrH() * 26/1080) * table.Count(self.requirements)) - (ScrH() * 26/1080))
-    self:SetTall(height)
+	local height = self:GetTall()
+	height = height + (((ScrH() * 26 / 1080) * table.Count(self.requirements)) - (ScrH() * 26 / 1080))
+	self:SetTall(height)
 	self.labelitemreq:SetText("Requirements: " .. table.concat(realreqd, ", "))
 	self.results = results
 	self.skill = skill

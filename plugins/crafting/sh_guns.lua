@@ -1,5 +1,5 @@
 local NEW_RECIPES = {
-    ["guns_aks74u"] = {
+	["guns_aks74u"] = {
 		["name"] = "AKS-74u",
 		["model"] = "models/weapons/ethereal/item_aks74u.mdl",
 		["desc"] = "Put together an AKS-74U",

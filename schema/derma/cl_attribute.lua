@@ -130,10 +130,8 @@ function PANEL:Init()
 end
 
 function PANEL:Think()
-	if (self.pressing) then
-		if ((self.nextPress or 0) < CurTime()) then
-			self:DoChange()
-		end
+	if (self.pressing and ((self.nextPress or 0) < CurTime())) then
+		self:DoChange()
 	end
 
 	self.deltaValue = math.Approach(self.deltaValue, self.value, FrameTime() * 15)

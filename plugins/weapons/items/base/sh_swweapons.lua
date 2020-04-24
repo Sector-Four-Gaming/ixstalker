@@ -27,7 +27,7 @@ attachments["swrp_dh17_scope"] = {name = "DH-17 Scope", slot = 1, uID = "dh17sco
 -- Inventory drawing
 if (CLIENT) then
 	function ITEM:PaintOver(item, w, h)
-		//Equipsquare
+		--Equipsquare
 		if (item:GetData("equip")) then
 			surface.SetDrawColor(110, 255, 110, 255)
 			--surface.DrawRect(w - 14, h - 14, 8, 8)
@@ -38,7 +38,7 @@ if (CLIENT) then
 		surface.SetMaterial(item.equipIcon)
 		surface.DrawTexturedRect(w-23,h-23,19,19)
 
-		//Attachment Icons
+		--Attachment Icons
 		local iterator = 1
 		if item:GetData("attachments") then
 			for k, v in pairs(item:GetData("attachments")) do
@@ -46,7 +46,7 @@ if (CLIENT) then
 				if ix.item.list[v[1]].upgradeIcon then
 					surface.SetMaterial(ix.item.list[v[1]].upgradeIcon)
 				end
-				surface.DrawTexturedRect(w-2-(22*iterator),4,19,19)
+				surface.DrawTexturedRect(w - 2 - (22 * iterator),4,19,19)
 				iterator = iterator + 1
 			end
 		end
@@ -61,45 +61,45 @@ if (CLIENT) then
 end
 
 function ITEM:GetDescription()
-	local str = self.description.." \n\n"..self.longdesc
+	local str = self.description .. " \n\n" .. self.longdesc
 
 	local customData = self:GetData("custom", {})
-	if(customData.desc) then
+	if (customData.desc) then
 		str = customData.desc
 	end
 
 	if (!self.entity) then
 		local client = self:GetOwner()
-		
+
 		if client == nil then
 			return self.description
 		end
-		
+
 		local weapon = client:GetActiveWeapon()
 		local SWEP = weapons.Get(self.class)
 		local atts = SWEP.Attachments
 		local activeAtts = self:GetData("attachments",{})
-		
-		str = str.."\n\nAttachments Available: \n"
-		
+
+		str = str .. "\n\nAttachments Available: \n"
+
 		for atcat, data in pairs(atts) do
 			if data.atts then
 				for k, name in pairs(data.atts) do
 					if attachments[name] then
 						local attName = attachments[name]["name"]
-						str = str..attName
+						str = str .. attName
 						for x,y in pairs(activeAtts) do
 							local attTable = ix.item.list[y[1]]
 							local niceName = attTable:GetName()
 							if attName == niceName then
-								str = str.." ✓"
+								str = str .. " ✓"
 							end
 						end
-						str = str.."\n"
+						str = str .. "\n"
 					end
 				end
 			end
-        end
+		end
 	end
 end
 
@@ -214,7 +214,7 @@ function ITEM:Equip(client)
 		if (weapon:GetMaxClip1() == -1 and weapon:GetMaxClip2() == -1 and client:GetAmmoCount(ammoType) == 0) then
 			client:SetAmmo(1, ammoType)
 		end
-		
+
 		self:SetData("equip", true)
 
 		if (self.isGrenade) then
@@ -233,23 +233,23 @@ function ITEM:Equip(client)
 end
 
 function ITEM:OnEquipWeapon(client, weapon)
-    local attList = {}   
+	local attList = {}
 	local atts = self:GetData("attachments")
 	local ammotype = self:GetData("ammoType", "Normal")
-	
-    if (atts) then
-        for k, v in pairs(atts) do
-            table.insert(attList, v[2])
-        end
-    end
-	
-    timer.Simple(0.1, function()
+
+	if (atts) then
+		for k, v in pairs(atts) do
+			table.insert(attList, v[2])
+		end
+	end
+
+	timer.Simple(0.1, function()
 		if (IsValid(weapon)) then
-    		for _, b in ipairs(attList) do
-    			weapon:Attach(b)
-    		end
-    	end
-    end)
+			for _, b in ipairs(attList) do
+				weapon:Attach(b)
+			end
+		end
+	end)
 end
 
 function ITEM:OnInstanced(invID, x, y)
@@ -349,11 +349,9 @@ ITEM.functions.Detach = {
 	name = "Detach",
 	tip = "Detach",
 	icon = "icon16/wrench.png",
-    isMulti = true,
-    multiOptions = function(item, client)
-	
+	isMulti = true,
+	multiOptions = function(item, client)
 	local targets = {}
-
 	for k, v in pairs(item:GetData("attachments", {})) do
 		local attTable = ix.item.list[v[1]]
 		local niceName = attTable:GetName()
@@ -361,15 +359,15 @@ ITEM.functions.Detach = {
 			name = niceName,
 			data = {k},
 		})
-    end
-    return targets
+	end
+	return targets
 end,
 	OnCanRun = function(item)
 		if (table.Count(item:GetData("attachments", {})) <= 0) then
 			return false
 		end
-				
-		return (!IsValid(item.entity))
+
+		return !IsValid(item.entity)
 	end,
 	OnRun = function(item, data)
 		local client = item.player
@@ -383,34 +381,29 @@ end,
 					local mods = item:GetData("attachments", {})
 					local attData = mods[data[1]]
 					if (attData) then
-					    
 						inv:Add(attData[1])
-
-				        local wepon = client:GetActiveWeapon()
-				        
+						local wepon = client:GetActiveWeapon()
 						if (IsValid(wepon) and wepon:GetClass() == item.class) then
-						    for category, data in pairs(wepon.Attachments) do
-						        for key, attachment in ipairs(data.atts) do
-						            if attachment == attData[2] then
-						                wepon:Detach(attData[2])
-						                break
-						            end
-					            end
-				            end
+							for category, data in pairs(wepon.Attachments) do
+								for key, attachment in ipairs(data.atts) do
+									if attachment == attData[2] then
+										wepon:Detach(attData[2])
+										break
+									end
+								end
+							end
 						end
 						mods[data[1]] = nil
 						item:SetData("attachments", mods)
-						
 						curPrice = item:GetData("RealPrice")
-                	    if !curPrice then
-                		    curPrice = item.price
-                		end
-                        item:SetData("RealPrice", (curPrice - ix.item.list[attData[1]].price))
-                        
-                        local itemweight = item:GetData("weight",0)
-                        local targetweight = ix.item.list[attData[1]].weight
-                        local totweight = itemweight - targetweight
-                        item:SetData("weight", totweight)
+						if !curPrice then
+							curPrice = item.price
+						end
+						item:SetData("RealPrice", curPrice - ix.item.list[attData[1]].price)
+						local itemweight = item:GetData("weight",0)
+						local targetweight = ix.item.list[attData[1]].weight
+						local totweight = itemweight - targetweight
+						item:SetData("weight", totweight)
 					else
 						client:NotifyLocalized("notAttachment")
 					end

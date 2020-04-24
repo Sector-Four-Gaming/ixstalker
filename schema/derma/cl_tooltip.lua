@@ -137,9 +137,9 @@ end
 -- @number width Width of the panel
 -- @number height Height of the panel
 function PANEL:PaintBackground(width, height)
-	if (self.backgroundColor) then
+	--if (self.backgroundColor) then
 		--derma.SkinFunc("DrawImportantBackground", 0, 0, width, height, self.backgroundColor)
-	end
+	--end
 end
 
 --- Called when the foreground of this row should be painted. If you are overriding this in a subclassed panel,
@@ -301,16 +301,13 @@ function PANEL:Paint(width, height)
 	-- directional arrow
 	self.bRaised = LocalPlayer():IsWepRaised()
 
-	if (!self.bClosing) then
-		if (self.bEntity and IsValid(self.entity) and self.bArrowFollowEntity) then
-			local entity = self.entity
-			local position = select(1, entity:GetBonePosition(entity:LookupBone("ValveBiped.Bip01_Spine") or -1)) or
-				entity:LocalToWorld(entity:OBBCenter())
-
-			position = position:ToScreen()
-			self.arrowX = math.Clamp(position.x, 0, ScrW())
-			self.arrowY = math.Clamp(position.y, 0, ScrH())
-		end
+	if (!self.bClosing and self.bEntity and IsValid(self.entity) and self.bArrowFollowEntity) then
+		local entity = self.entity
+		local position = select(1, entity:GetBonePosition(entity:LookupBone("ValveBiped.Bip01_Spine") or -1)) or
+			entity:LocalToWorld(entity:OBBCenter())
+		position = position:ToScreen()
+		self.arrowX = math.Clamp(position.x, 0, ScrW())
+		self.arrowY = math.Clamp(position.y, 0, ScrH())
 	end
 
 	-- arrow

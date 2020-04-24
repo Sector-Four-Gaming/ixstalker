@@ -39,8 +39,8 @@ function PANEL:Init()
 
 	self.unibuttons = self.buttons:Add("Panel")
 	self.unibuttons:Dock(BOTTOM)
-	self.unibuttons:SetTall(self.buttons:GetTall()*0.1)
-	self.unibuttons:DockMargin(0, 0, self.buttons:GetWide()*0.86, 20)
+	self.unibuttons:SetTall(self.buttons:GetTall() * 0.1)
+	self.unibuttons:DockMargin(0, 0, self.buttons:GetWide() * 0.86, 20)
 
 	local characters = self.unibuttons:Add("ixMenuButton")
 	characters:SetFont("stalkertitlefont")

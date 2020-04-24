@@ -9,7 +9,7 @@ netstream.Hook("ixCraftItem", function(ply, data, data2)
 	local char = ply:GetChar()
 	local inv = char:GetInventory()
 	local recipes = STORED_RECIPES
-	
+
 	for k, v in pairs(recipes) do
 		if v["id"] == id then
 			requirements = v["req"]
@@ -20,14 +20,14 @@ netstream.Hook("ixCraftItem", function(ply, data, data2)
 			flag = v["flag"] or ""
 		end
 	end
-	
+
 	if string.len(flag) > 0 then
 		if not char:HasFlags(flag) then
 			ply:Notify("You do not have the appropriate flags for this.")
 			return false
 		end
 	end
-	
+
 	if crafttable ~= "" then
 		if ply:GetNetVar("table","") ~= crafttable then
 			if crafttable == "cooking" then
@@ -87,7 +87,7 @@ netstream.Hook("ixCraftItem", function(ply, data, data2)
 			local amount = item:GetData("quantity",1)
 			if !item.isTool then
 				if amount > (v - i + 1) then
-					item:SetData("quantity",(amount - (v - i + 1)))
+					item:SetData("quantity",amount - (v - i + 1))
 					break
 				else
 					item:Remove()

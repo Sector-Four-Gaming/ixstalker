@@ -250,7 +250,7 @@ function PANEL:Paint(width, height)
 
 	surface.SetMaterial( Material("stalker/notice.png") )
 	surface.SetDrawColor(255, 255, 255, 255)
-	surface.DrawTexturedRect(0, 0, width, height*0.9)
+	surface.DrawTexturedRect(0, 0, width, height * 0.9)
 end
 
 function PANEL:PaintOver(width, height)
